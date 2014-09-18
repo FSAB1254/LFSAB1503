@@ -1,0 +1,22 @@
+\usepackage[in]{fullpage}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[inline]{enumitem}
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{color}
+
+\newcommand{\diff}[1]{\mathrm{d}#1}
+
+\let\oldvec\vec
+\renewcommand{\vec}[1]{\oldvec{\bm{#1}}}
+\newcommand{\uvec}[1]{\hat{\bm{#1}}}
+
+\newcommand{\TODO}[1]{\colorbox{red}{\textbf{\textsc{TODO: #1}}}}
