@@ -90,36 +90,64 @@
 
 L'équation de la production d'ammoniac selon le procédé Haber-Bosch est la suivante: 
 
-$$\ce {N2 + 3H2 -> 2NH3}$$
+\[
+  \ce {N2 + 3H2 -> 2NH3}
+  \text.
+\]
 
-Nous voulons calculer la quantité de réactifs pour obtenir une quantité de \unit{1000}{\tonne}  d'ammoniac. Pour cela avec les masses molaires respectives de \unit{28}{\gram/\mole} et \unit{2}{\gram/\mole} du diazote et du dihydrogène, il nous faut: 
+Nous voulons calculer la masse de réactifs nécessaire pour obtenir une quantité de \unit{1000}{\tonne}  d'ammoniac. Pour commencer, nous allons déterminer le nombre de moles d'ammoniac produites à l'aide de la masse molaire du composé, qui est de \unit{17}{\gram\per\mole}.
+
+\[
+  n_\ce{NH3} = \frac {m_\ce{NH3}} {M_\ce{NH3}} = \frac {\unit{10^9}{\gram}} {\unit{17}{\gram/\mole}} = \unit{5.882\e7}{\mole}
+  \text.
+\]
+
+Ensuite, en utilisant l'équation de réaction, nous pouvons déterminer la quantité de dihydrogène et de diazote nécessaire :
+
+\[
+  n_\ce{H2} = \frac{3}{2} n_\ce{NH3} \quad\text{et}\quad n_\ce{N2} = \frac{1}{2} n_\ce{NH3}
+  \text.
+\]
+
+Enfin, avec les masses molaires des réactifs, respectivement \unit{2}{\gram\per\mole} et \unit{28}{\gram\per\mole} pour le dihydrogène et le diazote, nous obtenons le bilan de masse suivant :
+
 \begin{center}
- \begin{tabular}{|l|c|r|}
-   \hline
-    & dihydrogène & diazote \\
-   \hline
-   Nb mole & $88.2\cdot 10^6$ & $29.4\cdot 10^6$ \\
-   Poids & \unit{176.8}{\tonne} & \unit{823.2}{\tonne}  \\
-   \hline
- \end{tabular}
+  \begin{tabular}{llrr}
+    & & \multicolumn{1}{c}{\bfseries Moles} & \multicolumn{1}{c}{\bfseries Masse} \\
+    \hline
+    \multirow{2}{*}{\bfseries Réactifs}
+     & \ce{H2} & \unit{8.823\e7}{\mole} & \unit{176.5}{\tonne} \\
+     & \ce{N2} & \unit{2.941\e7}{\mole} & \unit{823.5}{\tonne} \\
+    \hline
+    \bfseries Produits
+     & \ce{NH3} & \unit{5.882\e7}{\mole} & \unit{1000.0}{\tonne}
+  \end{tabular}
 \end{center}
-
-Notre bilan de masse est maintenant fini.
 
 \section{Aspect thermique}
 
-Nous devons faire en sorte que notre réacteur soit à une température constante de \unit{500}{\celsius}. Étant en présence d'une réaction exothermique, pour le refroidir, nous disposons d'un flux d'eau dont la température varie entre \unit{25}{\celsius} et \unit{90}{\celsius}.
-
+Nous devons faire en sorte que notre réacteur soit à une température constante de \unit{500}{\celsius}. Étant en présence d'une réaction exothermique, pour le refroidir, nous disposons d'un flux d'eau dont la température varie est de \unit{25}{\celsius} à l'entrée et de \unit{90}{\celsius} à la sortie. L'objectif ici est de calculer ce flux.
 
 Nous utilisons comme hypothèses que le réacteur est, au départ, à \unit{500}{\celsius} et que la réaction se fait en continu.
 
+Chaque jour, le réacteur produit \unit{5.882\e7}{\mole} d'ammoniac. Pour calculer le flux, nous allons déterminer quelle quantité d'eau est nécessaire pour absorber la chaleur dégagée par la réaction ; nous aurons donc besoin de l'enthalpie molaire de la réaction et de la capacité calorifique volumique de l'eau. Ces deux valeurs, trouvées dans des tables de données, sont respectivement \unit{-46.11}{\kilo\joule\per\mole} et \unit{4167.51}{\kilo\joule\per\kelvin \cdot \meter\cubed}.
 
-On sait que réaction dégage \unit{46.11}{kJ/\mole}, on considère que l'eau est injectée à \unit{25}{\celsius} et qu'une fois qu'elle atteint la température de \unit{90}{\celsius} elle ressort du circuit. 
-Il nous est donné dans des tables qu'à l'état liquide, l'eau a une capacité calorifique \unit{75.29}{\joule/\kelvin \cdot \mole}. Ayant une différence de température de \unit{65}{\celsius} entre l'entrée et la sortie nous obtenons l'expression suivante:
-$$ 75.29\cdot 65 $$% pas complet
-il nous faut \unit{9972000}{\litre/jour} pour refroidir la production de \unit{1000}{\tonne} d'ammoniac. Cela est équivalent à un débit de \unit{115}{\litre/\second}.
-% petit souci, je suis pas sur que notre enthalpie de réaction soit juste :(
+Nous obtenons alors l'expression suivante :
+\[
+  \underbrace{n_\ce{NH3} \cdot \Delta H_\text{m}}_{\text{Chaleur de la réaction}} + 
+  \underbrace{C_\text{vol, eau} \cdot V_\text{eau} \cdot \Delta T}_{\text{Chaleur absorbée par l'eau}} = 0
+  \text.
+\]
+Il suffit maintenant d'isoler $V_\text{eau}$ et d'injecter les données :
+\begin{align*}
+  V_\text{eau}
+  &= - \frac{n_\ce{NH3} \cdot \Delta H_\text{m}}{C_\text{vol, eau} \cdot \Delta T} \\
+  &= - \frac{(\unit{5.882\e7}{\mole}) \cdot (\unit{-46.11}{\kilo\joule\per\mole})}{(\unit{4167.51}{\kilo\joule\per\kelvin \cdot \meter\cubed}) \cdot (\unit{90}{\celsius} - \unit{25}{\celsius})} \\
+  &= \unit{1.00\e4}{\meter\cubed}
+  \text.
+\end{align*}
 
+Il nous faut donc un flux d'eau de \unit{1.00\e4}{\meter\cubed\per jour} pour refroidir le réacteur, ce qui correspond à \unit{0.116}{\meter\cubed\per\second}.
 
 \section{Provenance des réactifs}
  
