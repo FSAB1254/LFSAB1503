@@ -92,7 +92,7 @@ L'équation de la production d'ammoniac selon le procédé Haber-Bosch est la su
 
 $$\ce {N2 + 3H2 -> 2NH3}$$
 
-Nous voulons calculer la quantité de réactifs pour obtenir une quantité de \unit{1000}{\tonne}  d'ammoniac. Pour cela avec les masses molaires respectives de \unit{28}{\gram/\mole} et \unit{2}{\gram/\mole} du diazote et du dihydrogène, il nous faut: 
+Nous voulons calculer la quantité de réactifs pour obtenir une quantité de \unit{1000}{\tonne} d'ammoniac. Pour cela avec les masses molaires respectives de \unit{28}{\gram/\mole} et \unit{2}{\gram/\mole} du diazote et du dihydrogène, il nous faut: 
 \begin{center}
  \begin{tabular}{|l|c|r|}
    \hline
@@ -114,18 +114,29 @@ Nous devons faire en sorte que notre réacteur soit à une température constant
 Nous utilisons comme hypothèses que le réacteur est, au départ, à \unit{500}{\celsius} et que la réaction se fait en continu.
 
 
-On sait que réaction dégage \unit{46.11}{kJ/\mole}, on considère que l'eau est injectée à \unit{25}{\celsius} et qu'une fois qu'elle atteint la température de \unit{90}{\celsius} elle ressort du circuit. 
+On sait que la réaction dégage \unit{92.22}{kJ/\mole}, on considère que l'eau est injectée à \unit{25}{\celsius} et qu'une fois qu'elle atteint la température de \unit{90}{\celsius} elle ressort du circuit. 
 Il nous est donné dans des tables qu'à l'état liquide, l'eau a une capacité calorifique \unit{75.29}{\joule/\kelvin \cdot \mole}. Ayant une différence de température de \unit{65}{\celsius} entre l'entrée et la sortie nous obtenons l'expression suivante:
-$$ 75.29\cdot 65 $$% pas complet
-il nous faut \unit{9972000}{\litre/jour} pour refroidir la production de \unit{1000}{\tonne} d'ammoniac. Cela est équivalent à un débit de \unit{115}{\litre/\second}.
-% petit souci, je suis pas sur que notre enthalpie de réaction soit juste :(
+$$ 75.29\cdot 65 \cdot x = 92.22\cdot 10^3 \cdot 58.8 \cdot 10^6,$$
+avec $x$ le nombre de mole \ce{H_2 O} nécessaire.
+
+Nous trouvons qu'il nous faut $\unit{738687}{m^3/jour}$ pour refroidir la production de \unit{1000}{\tonne} d'ammoniac. Cela est équivalent à un débit de $\unit{205}{m^3/\second}$.
+
 
 
 \section{Provenance des réactifs}
  
-Pour ce qui est de la provenance des réactifs plusieurs options ont été considérées. Pour ce qui est de l'eau nous pensions utiliser l'électrolyse de l'eau. La possibilité de la décomposition thermochimique a elle été abandonné. Pour le diazote nous avons décidé de prendre le procédé Lindé qui consiste en une distillation de l'air liquide.
+Pour ce qui est de la provenance des réactifs plusieurs options ont été considérées. Pour ce qui est de l'eau nous avons pensé utiliser l'électrolyse de l'eau ainsi que la décomposition thermochimique. Pour le diazote nous avions pensé utiliser le procédé Lindé qui consiste en une distillation de l'air liquide.
 
+Cependant ces processus étant coûteux et l'air étant composée à 78.1\%, nous avons opté pour l'hydrogénation du \ce{N_2(g)} atmosphérique par le \ce{H_2(g)}. 
 
+Un flow-sheet de notre procédé ce trouve à la figure~\ref{Flowsheet}.
+\begin{figure}
+  \begin{center}
+ 	 \includegraphics[scale=0.4]{Shema1.jpg}
+  	 \caption{Flow-sheet}
+  	 \label{Flowsheet}
+  \end{center}
+\end{figure}
 
 
 %\end{document}
