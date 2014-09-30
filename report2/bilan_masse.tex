@@ -1,0 +1,96 @@
+\documentclass[a4paper,12pt, oneside]{article}
+
+\input{../.latex/lib.tex}
+
+%opening
+\title{}
+\author{Groupe 1254}
+\date{01-10-2014}
+
+\begin{document}
+
+\section*{Bilan de masse}
+
+Nous cherchons à produire une masse $m$ de \ce{NH3}. La masse molaire de la molécule étant de \unit{0.017}{\kilogram\per\mole}, cela est équivalent à un nombre de moles $n = m/(\unit{0.017}{\kilogram\per\mole})$ de \ce{NH3}. Pour cela, nous utilisons la réaction suivante :
+
+\reaction*{1/2N2 + 3/2H2 -> NH3}
+
+Nous en déduisons qu'il nous faut les quantités suivantes de \ce{N2} et de \ce{H2} :
+
+\[
+  n_\ce{H2} = \frac{3}{2} n 
+  \qquad\text{et}\qquad
+  n_\ce{N2} = \frac{1}{2} n
+  \text.
+\]
+
+L'azote utilisé dans le réacteur provient directement de l'air, tandis que l'hydrogène est à produire à l'aide des réactions suivantes :
+\begingroup
+\addtolength{\jot}{.5em}
+\begin{align}
+  \cee{
+     CH4 +  H2O &->  CO  + 3H2 \\
+     CO  +  H2O &->  CO2 +  H2 \\
+    2CH4 +  O2  &-> 2CO + 4H2 \\
+    2CO  + 2H2O &-> 2CO2 + 2H2
+  }
+  \text.
+\end{align}
+\endgroup
+
+Il est important de noter que ces réactions se produisent de façon séparées, l'une après l'autre. Une fois la quatrième réaction effectuée, les produits inutiles (\ce{CO2} et \ce{H2O}) sont rejetés, tandis que l'hydrogène et l'azote sont envoyés dans le réacteur pour la production d'ammoniac.
+
+Nous allons maintenant déterminer la quantité de chaque réactif nécessaires afin d'obtenir dans le réacteur une composition st\oe{}chiométrique de diazote et de dihydrogène, telle que décrite par la réaction de production de l'ammoniac. Commençons par l'azote : celui-ci provient de l'air, dont la composition est \unit{78.08}{\%} de \ce{N2} et \unit{20.95}{\%} de \ce{O2}. Il est donc nécessaire d'injecter
+\[
+  n_\text{air} = \frac{n_\ce{N2}}{0.7808} = \frac{\frac{1}{2} n}{0.7808} = 0.6404 n
+\]
+moles d'air pour produire une quantité $n$ d'ammoniac.
+
+Passons à l'hydrogène. Nous avons plusieurs réactions responsables de sa production et il est important de saisir les différences entre celles-ci. Les réactions (1-2) nécessitent un apport de méthane et d'eau que l'on peut aisément contrôler, tandis que les réactions (3-4) nécessitent notamment un apport d'oxygène qui, lui, est déterminé à l'avance par la composition de l'air et la quantité d'azote injectée dans le système. Nous allons donc déterminer quelle quantité d'hydrogène est produite par les réactions (3-4) à partir de l'oxygène disponible, puis nous compléterons le manque à l'aide des réactions (1-2).
+
+Commençons par calculer la quantité de \ce{O2} disponible :
+\[
+  n_\ce{O2} = 0.2095 n_\text{air} = 0.2095 \times (0.6404 n) = 0.1342 n
+  \text.
+\]
+Les équations (3-4) nous indiquent que chaque mole de \ce{O2} utilise \unit{2}{\mole} de \ce{CH4} et \unit{2}{\mole} de \ce{H2O} pour produire en tout \unit{6}{\mole} de \ce{H2} :
+\begin{align*}
+  n_{\ce{CH4}\text{ util. (3-4)}} &= 2 n_\ce{O2} = 0.2684 n \\
+  n_{\ce{H2O}\text{ util. (3-4)}} &= 2 n_\ce{O2} = 0.2684 n \\
+  n_{\ce{H2}\text{ prod. (3-4)}} &= 6 n_\ce{O2} = 0.8052 n
+  \text.
+\end{align*}
+
+Il reste donc
+\[
+n_{\ce{H2}\text{ prod. (1-2)}} = n_\ce{H2} - n_{\ce{H2}\text{ prod. (1-2)}} = 0.6948 n
+\]
+de \ce{H2} à produire afin d'obtenir une composition st\oe{}chiométrique. Pour cela, nous allons utiliser les réactions (1-2).
+Dans celles-ci, \unit{1}{\mole} de \ce{CH4} et \unit{2}{\mole} de \ce{H2O} sont consommées pour la production de \unit{4}{\mole} de \ce{H2}. Nous pouvons aisément calculer la quantité de réactifs nécessaires pour obtenir l'hydrogène manquant :
+\begin{align*}
+  n_{\ce{CH4}\text{ util. (1-2)}} &= \frac{1}{4} n_{\ce{H2}\text{ prod. (1-2)}} = 0.1737 n \\
+  n_{\ce{H2O}\text{ util. (1-2)}} &= \frac{1}{2} n_{\ce{H2}\text{ prod. (1-2)}} = 0.3474 n
+  \text.
+\end{align*}
+
+Nous pouvons maintenant résumer le bilan de masse :
+\begin{center}
+  \begin{tabular}{lccccc}
+    & Air\footnotemark & \ce{CH4} & \ce{H2O} & \ce{H2} & \ce{NH3} \\
+    \hline
+    Réactions 1-2 &
+     & $-0.1737 n$ & $-0.3474 n$ & $+0.6948 n$ & \\
+    Réactions 3-4 &
+    \multirow{2}{*}{$-0.6404 n$} & $-0.2684 n$ & $-0.2684 n$ & $+0.8052 n$ & \\
+    Réac. finale &
+     & & & $-1.500 n$ & $+1.000 n$ \\
+    \hline
+    Total &
+    $-0.6404 n$ & $-0.4421 n$ & $-0.6158 n$ & & $+1.000 n$ \\
+    Total (masse) &
+    $-1.091 m$ & $-0.4161 m$ & $-0.6520 m$ & & $+1.000 m$
+  \end{tabular}
+\end{center}
+\footnotetext{Composition : \unit{78.08}{\%} \ce{N2} et \unit{20.95}{\%} \ce{O2}, plus d'autres gaz en très faible proportions.}
+
+\end{document}

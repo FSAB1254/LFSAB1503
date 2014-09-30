@@ -16,6 +16,7 @@
 \usepackage{color}
 \usepackage[version=3]{mhchem}
 \usepackage{multirow}
+\usepackage{tabulary}
 
 \newcommand{\diff}[1]{\mathrm{d}#1}
 
@@ -26,3 +27,10 @@
 \newcommand{\TODO}[1]{\colorbox{red}{\textbf{\textsc{TODO: #1}}}}
 
 \newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
+
+\makeatletter
+\newcommand\reaction@[1]{\begin{equation}\ce{#1}\end{equation}}
+\newcommand\reaction@nonumber[1]%
+{\begin{equation*}\ce{#1}\end{equation*}}
+\newcommand\reaction{\@ifstar{\reaction@nonumber}{\reaction@}}
+\makeatother
