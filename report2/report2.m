@@ -1,17 +1,30 @@
-function report1
-% SOURCE: http://www.edu.upmc.fr/chimie/lc101-202-301/communs/public/capcalo.htm
-Cp_CH4 = @(T) 14.23 + 75.3e-3*T - 18.00e-6*T.^2;
-Cp_H2O = @(T) 30.13 + 10.46e-3*T;
-Cp_CO = @(T) 27.62 + 5.02e-3*T;
-Cp_H2 = @(T) 29.30 - 0.84e-3*T + 2.08e-6*T.^2;
-
-
+function report2
 T0 = 298.15; % Reference temperature
-D_S0 = (197.67 + 3*130.68) - (186.26 + 188.83); % Entropy delta at reference temperature
-D_H0 = (-137.17e3 + 3*0) - (-74.81e3 - 228.57e3); % Enthalpy delta at reference temperature
-D_Cp = @(T) (Cp_CO(T) + 3*Cp_H2(T)) - (Cp_CH4(T) + Cp_H2O(T)); % Specific heat of products - reagents (fct of the temperature)
 
-K = eqconst(T0, D_S0, D_H0, D_Cp);
+% Standard enthropy at reference temperature of CH4, H2O, CO and H2
+% (J/mol/K)
+% SOURCE: "Principes de Chimie", 2nd edition, Atkins & Jones, de boek
+S0 = [186.26 ; 188.83 ; 197.67 ; 130.68];
+
+% Standard formation enthalpy at reference temperature of CH4, H2O, CO and
+% H2 (J/mol)
+% SOURCE: "Principes de Chimie", 2nd edition, Atkins & Jones, de boek
+H0f = [-74.81e3 ; -228.57e3 ; -137.17e3 ; 0];
+
+% Specific heat of CH4, H2O, CO and H2 (J/mol/K) (fct of the temperature)
+% SOURCE: http://www.edu.upmc.fr/chimie/lc101-202-301/communs/public/capcalo.htm
+Cp = @(T) [
+    14.23 + 75.3e-3*T - 18.00e-6*T.^2 ;
+    30.13 + 10.46e-3*T ;
+    27.62 + 5.02e-3*T ;
+    29.30 - 0.84e-3*T + 2.08e-6*T.^2
+    ];
+
+% Stoechiometric coefficents of CH4, H2O, CO and H2 (reagents are negative;
+% products are positive)
+C = [-1 -1 1 3];
+
+K = eqconst(T0, C*S0, C*H0f, @(T) C*Cp(T));
 
 K(1080) % K at 1080K
 
@@ -32,10 +45,10 @@ function K = eqconst(T0, D_S0, D_H0, D_Cp)
 % the temperature. Assumes no phase transition has to occur to go from T0
 % to T.
 
-R = 8.314; % Perfact gas constant
+R = 8.314; % Perfect gas constant
 
 % Entropy delta (fct of the temperature)
-D_S = @(T) D_S0 + integral(@(T) D_Cp(T)./T, T0, T);
+D_S = @(T) D_S0 + integral(@(X) D_Cp(X)./X, T0, T);
 
 % Enthaply delta (fct of the temperature)
 D_H = @(T) D_H0 + integral(D_Cp, T0, T);
