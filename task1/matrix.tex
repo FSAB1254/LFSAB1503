@@ -1,0 +1,26 @@
+\section{Système linéaire du bilan de masse}\label{appendix:matrix}
+
+Pour éventuellement aider à comprendre le fonctionnement du bilan de masse, nous fournissons ici le système, sous forme matriciel, qui est à résoudre pour obtenir l'espace vectoriel $V$.
+
+Dans l'ordre, les lignes de la matrice correspondent aux composés suivants : \ce{CH4}, \ce{H2O}, \ce{O2}, \ce{N2}, \ce{Ar}, \ce{CO},  \ce{CO2}, \ce{H2} et \ce{NH3}.
+\[
+\left(
+\begin{array}{*{12}c}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & -2 & 0 & 0 \\
+  0 & 1 & 0 & -1 & 0 & 0 & 0 & -1 & -1 & 0 & -1 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 1 & 4 & 1 & -3 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & -1 & 2 & -1 & 0 \\
+  0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+  0 & 0 & .21 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
+  0 & 0 & .78 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 \\
+  0 & 0 & .01 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 2
+\end{array}
+\right)
+\left(
+\begin{array}{*{1}c}
+  n_{i,\ce{CH4}} \\ n_{i,\ce{H2O}} \\ n_{i,\text{air}} \\ n_{f,\ce{H2O}} \\ n_{f,\ce{CO2}} \\ n_{f,\ce{Ar}} \\ n_{f,\ce{NH3}} \\ R_1 \\ R_2 \\ R_3 \\ R_4 \\ R_5
+\end{array}
+\right)
+= 0
+\]
