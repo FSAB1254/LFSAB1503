@@ -10,6 +10,8 @@ Pour ce faire, nous décomposons le bilan en deux parties : tout d'abord, nous a
 
 Pour obtenir ce bilan de masse, nous devons résoudre les dépendances entre les entrées et sorties d'espèces, et les réactions qui se produisent entre ces espèces. Ces dépendances sont de deux types : linéaires --- les réactions chimiques --- et non linéaires --- les constantes d'équilibre thermodynamiques.
 
+\subsubsection{Équations linéaires}
+
 Nous allons commencer par résoudre les relations linéaires. L'ensemble des entrées, sorties et réactions se décomposent de la manière suivante :
 \begin{itemize}
   \item entrée de \ce{CH4} et \ce{H2O} ($n_i(\ce{CH4})$ et $n_i(\ce{H2O})$) ;
@@ -27,17 +29,19 @@ La conservation de la masse implique que la somme des entrées, sorties et réac
 \[
   n_i(\ce{H2O}) - n_f(\ce{H2O}) - R_1 - R_2 - R_4 = 0
 \]
-Si l'on fait la même chose pour chacune des 9 espèces impliquées, on obtient un système de 9 équations linéaires homogènes à 12 inconnues. La résolution de ce système nous donne un espace vectoriel $V$ de dimension 3, qui prend en compte toutes les dépendances linéaires entre les entrées, sorties et réactions.
+Si l'on fait la même chose pour chacune des 9 espèces impliquées, on obtient un système de 9 équations linéaires homogènes à 12 inconnues. La résolution de ce système --- sous forme matricielle, via matlab --- nous donne un espace vectoriel $V$ de dimension 3, qui prend en compte toutes les dépendances linéaires entre les entrées, sorties et réactions.
 
-Ces 12 valeurs n'étant pas totalement indépendantes, faire le bilan de masse revient à résoudre les dépendances (linéaires et non linéaires) entre 
+Pour obtenir une solution unique, il faut donc fournir trois équations supplémentaires pour réduire cet espace à un point. Une de ces conditions est linéaire : il s'agit de remplacer $n_f(\ce{NH3})$ par le nombre de moles de \ce{NH3} que l'on veut produire.
 
-On peut considérer chacune de ces 12 grandeurs comme étant les coefficients de vecteurs dans un espace $V \in \mathbb{R}^9$ représentant des flux des 9 espèces chimiques différentes qui apparaissent dans le plant. Ainsi, un vecteur $(1, 0, \dots, 0)^T$ pourrait correspondre à une entrée de \ce{CH4}, et un autre vecteur $(0, \dots, -1)^T$ à une sortie de \ce{NH3}. Une réaction serait alors également représentée sous la forme d'un vecteur (par exemple, $R_1$ : $(-1, -1, 3, 1, 0, \dots, 0)^T$).
+\subsubsection{Équations non-linéaires}
 
-De cette manière, on peut manipuler algébriquement les 12 \og{}flux\fg{} et résoudre les dépendances linéaires entre ceux-ci. Pour cela, il suffit de considérer une matrice $9\times12$ représentant l'espace $V$
+Les deux dernières équations, comme nous l'avons dit, sont non-linéaires et correspondent aux équilibres thermodynamiques des espèces en présence dans le réformeur primaire (réactions $R_1$ et $R_2$).
 
-Dans un premier temps, si l'on omet de considérer que les réactions se produisant dans le réformeur primaire ne sont pas complètes, 
+À chacune des deux réactions chimiques concernées correspond une constante d'équilibre, respectivement $K_1$ et $K_2$. Le calcul détaillé de la valeur ces constantes est fourni en annexe.
 
-Pour obtenir la solution à ce problème, il nous faut, dans un premier temps, résoudre les relations linéaires entre les différentes inconnues. Mathématiquement, cela correspond à obtenir une base de l'espace vectoriel des solutions.
+
+
+\hrule
 
 Dans l'ordre, les colonnes sont : $n_i(\ce{CH4})$, $n_i(\ce{H2O})$, $n_i(\text{air})$, $n_f(\ce{H2O})$, $n_f(\ce{CO2})$, $n_f(\ce{Ar})$, $n_f(\ce{NH3})$, $R_1$, $R_2$, $R_3$, $R_4$ et $R_5$.
 \[
@@ -58,4 +62,9 @@ Dans l'ordre, les colonnes sont : $n_i(\ce{CH4})$, $n_i(\ce{H2O})$, $n_i(\text{a
 
 
 \subsection{Bilan de la combustion du méthane}
+
+
+
+\subsection{Bilan total}
+
 
