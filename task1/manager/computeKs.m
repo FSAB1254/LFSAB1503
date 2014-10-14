@@ -12,7 +12,7 @@ S0 = [186.26 ; 188.83 ; 197.67 ; 213.74 ; 130.68];
 % Standard formation enthalpy at reference temperature of CH4, H2O, CO, CO2
 % and H2 [J/mol]
 % SOURCE: "Principes de Chimie", 2nd edition, Atkins & Jones, de boek
-H0f = [-74.81e3 ; -228.57e3 ; -137.17e3 ; -393.51e3 ; 0];
+H0f = [-74.81e3 ; -241.82e3 ; -110.53e3 ; -393.51e3 ; 0];
 
 % Specific heat of CH4, H2O, CO, CO2 and H2 [J/mol/K] (fct of the temperature)
 % SOURCE: http://www.edu.upmc.fr/chimie/lc101-202-301/communs/public/capcalo.htm

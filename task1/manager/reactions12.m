@@ -7,9 +7,9 @@ function n = reactions12( n_NH3, T_reformer, n_CH4_34, n_H2_34 )
 n_H2_12 = (3/2)*n_NH3 - n_H2_34;
 
 % Equilibrium constants of reactions 1 and 2
-[K1, K2] = computeKs(T_reformer);
+[K1, K2] = computeKs(T_reformer)
 
-p = 29; % Average pressure in reactor [bar]
+p_tot = 29; % Average pressure in reactor [bar]
 p0 = 1; % Reference pressure [bar]
 
 syms a b c d real;
@@ -23,21 +23,21 @@ xi_CO2 = (d)/n_tot;
 xi_H2 = (3*c + d)/n_tot;
 
 % Equilibrium constants
-eqs(1) = (xi_CO * xi_H2^3 / xi_CH4 / xi_H2O * (p/p0)^2) == K1;
+eqs(1) = (xi_CO * xi_H2^3 / xi_CH4 / xi_H2O * (p_tot/p0)^2) == K1;
 eqs(2) = (xi_CO2 * xi_H2 / xi_CO / xi_H2O) == K2;
 % The number of moles of H2 produced is fixed
 eqs(3) = xi_H2*n_tot == n_H2_12;
 % The number of moles of CH4 left after the reaction is fixed
 eqs(4) = xi_CH4*n_tot == n_CH4_34;
 
-[a, b, c, d] = solve(eqs, a, b, c, d);
+[a, b, c, d] = solve(eqs, a, b, c, d)
 
 % Number of moles of CH4, H2O and air needed, and H2 produced [mol]
 n = [
-    eval(-c)
-    eval(-c -d)
+    eval(-c(2))
+    eval(-c(2) -d(2))
     0
-    eval(3*c + d)
+    eval(3*c(2) + d(2))
     ]';
 
 end
