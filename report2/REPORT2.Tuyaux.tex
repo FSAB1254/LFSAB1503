@@ -44,7 +44,7 @@
 
 Grâce au programme Matlab que nous avons écrit, nous sommes arrivés à déterminer le nombre de moles journalières de \ce{CH4} nécessaires pour pouvoir produire 1500 tonnes d'ammoniac par jour. A partir de cela, nous sommes parvenus à exprimer le débit de masse du \ce{CH4} qui est: 
 	$$\dot{m}=\frac{n_{\ce{CH4}}\cdot M_{\ce{CH4}}}{24\cdot60\cdot60}$$
-	$$\dot{m}=\frac{\textcolor{red}{a-completer}\cdot\unit{16\cdot10^{-3}}{\kilogram\per\mole}}{24\cdot60\cdot60}$$% n à compléter
+	$$\dot{m}=\frac{\unit{3.9027\cdot10^7}{mole}\cdot\unit{16\cdot10^{-3}}{\kilogram\per\mole}}{24\cdot60\cdot60}=\unit{7.24}{\kilogram\per\second}$$
 
 On cherche dans un premier temps le flux d'écoulement de \ce{CH4}, $\dot{V}_{tot}$. On sait que: 
 	$$\dot{V}_{tot}=\frac{\dot{m}}{\rho}$$
@@ -59,10 +59,12 @@ Selon la loi des gaz parfaits:
 
 Et donc:
 	$$\rho = \frac{1}{v} = \unit{5.52}{\kilogram\per\cubic\meter}$$
-	$$\dot{V}_{tot} = \frac{\dot{m}}{\rho}=\unit{\textcolor{red}{a-completer}}{\cubic\meter\per\second}$$% débit à compléter
+	$$\dot{V}_{tot} = \frac{\dot{m}}{\rho}=\unit{1.31}{\cubic\meter\per\second}$$
 
 Pour trouver le nombre de tuyaux nécessaires, il nous faut diviser le $\dot{V}_{tot}$ par le volume d'écoulement d'un seul tuyau $\dot{V}_{1t} = A\cdot c$. Connaissant le rayon d'un tuyau ($r=\unit{0.05}{\meter}$), on a:
 	$$x = \frac{\dot{V}_{tot}}{\dot{V}_{1t}}$$
-	$$x = \frac{\textcolor{red}{a-completer}}{\frac{\pi}{200}}$$% écoulement à compléter
+	$$x = \frac{\unit{1.31}{\cubic\meter\per\second}}{\unit{\frac{\pi}{200}}{\cubic\meter\per\second}}=\unit{83.39}{tuyaux}$$
+	
+Il nous faudrait donc entre 83 et 84 tuyaux pour satisfaire le besoin en \ce{CH4} dans le réacteur du reformage primaire.
 
 \end{document}
