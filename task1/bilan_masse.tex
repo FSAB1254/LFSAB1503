@@ -70,25 +70,16 @@ Les deux dernières équations, comme nous l'avons dit, sont non-linéaires et c
 
 À l'aide d'un tableau d'avancement des réactions, nous allons déterminer la quantité de réactifs et de produits au début et à l'équilibre des réactions 1 et 2 :
 \begin{center}
-  \begin{tabular}{lcccc}
-    &  \ce{CH4} & \ce{H2O} & \ce{CO} & \ce{H2}  \\
+  \begin{tabular}{lccccc}
+    &  \ce{CH4} & \ce{H2O} & \ce{CO} & \ce{H2} & \ce{CO2}  \\
     \hline
     $n_\text{init}$
-    & $n_{i,\ce{CH4}}$ & $n_{i,\ce{H2O}}$ & 0 & 0  \\
+    & $n_{i,\ce{CH4}}$ & $n_{i,\ce{H2O}}$ & $R_{1}$ & 0 & 0  \\
     $n_\text{eq}$
-    & $n_{i,\ce{CH4}}-R_1$ & $n_{i,\ce{H2O}}-R_1$ & $R_1$ & $3R_1$
+    & $n_{i,\ce{CH4}}-R_1$ & $n_{i,\ce{H2O}}-R_1-R_2$ & $R_1-R_2$ & $3R_1+R_2$ & R_2
   \end{tabular}
 \end{center}
-\begin{center}
-  \begin{tabular}{lcccc}
-    &  \ce{CO} & \ce{H2O} & \ce{CO2} & \ce{H2}  \\
-    \hline
-    $n_\text{init}$
-    & $R_1$ & $n_{i,\ce{H2O}} - R_1$ & 0 & 0  \\
-    $n_\text{eq}$
-    & $R_1-R_2$ & $n_{i,\ce{H2O}}-R_1-R_2$ & $R_2$ & $R_2$
-  \end{tabular}
-\end{center}
+
 On voit ici que $R_1$ et $R_2$ symbolisent le degré d'avancement des réactions du réformeur primaire.
 %
 Les valeurs obtenues dans les deux tableaux d'avancement nous permettent de calculer l'expression des activités des 5 différentes espèces en présence. Soit le gaz $\ce{X}$ et $p_\ce{X}$ sa pression partielle ; son activité est la suivante :
