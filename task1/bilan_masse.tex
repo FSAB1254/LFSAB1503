@@ -3,12 +3,9 @@
 On cherche à calculer les quantités de \ce{CH4}, \ce{H2O} et d'air\footnotemark (respectivement $n_{i,\ce{CH4}}$, $n_{i,\ce{H2O}}$ et $n_{i,\text{air}}$, en moles) nécessaires pour produire $n_{f,\ce{NH3}}$\;\mole{} d'ammoniac, avec une température du réformeur primaire de $T$\;\kelvin{}.
 \footnotetext{La composition de l'air étant : $78\%$ \ce{N2}, $21\%$ \ce{O2}, $1\%$ \ce{Ar}, en fraction molaire.}
 
-Pour ce faire, nous décomposons le bilan en deux parties : tout d'abord, nous allons considérer les réactions se passant au sein du plant (réformeur primaire, réformeur secondaire, WGS et réacteur) et en déduire les quantités de matière nécessaires ; ensuite, nous ajouterons à ce premier bilan la masse de méthane utilisée pour chauffer les réactifs à la température $T$ du réformeur primaire.
-
+Pour ce faire, nous décomposons le bilan en deux parties : tout d'abord, nous allons considérer les réactions se passant au sein du plant (réformeur primaire, réformeur secondaire, WGS et réacteur) et en déduire les quantités de matière nécessaires ; ensuite, nous ajouterons à ce premier bilan la masse de méthane brûlée dans le four pour contrebalancer l'effet endothermique des réactions du réformeur primaire.
 
 \subsection{Bilan des réactions de synthèse}
-
-
 
 Pour obtenir ce bilan de masse, nous devons résoudre les dépendances entre les entrées et sorties d'espèces, et les réactions qui se produisent entre ces espèces. Ces dépendances sont de deux types : linéaires --- les réactions chimiques --- et non linéaires --- les constantes d'équilibre thermodynamiques.
 
@@ -76,7 +73,7 @@ Les deux dernières équations, comme nous l'avons dit, sont non-linéaires et c
     $n_\text{init}$
     & $n_{i,\ce{CH4}}$ & $n_{i,\ce{H2O}}$ & $R_{1}$ & 0 & 0  \\
     $n_\text{eq}$
-    & $n_{i,\ce{CH4}}-R_1$ & $n_{i,\ce{H2O}}-R_1-R_2$ & $R_1-R_2$ & $3R_1+R_2$ & R_2
+    & $n_{i,\ce{CH4}}-R_1$ & $n_{i,\ce{H2O}}-R_1-R_2$ & $R_1-R_2$ & $3R_1+R_2$ & $R_2$
   \end{tabular}
 \end{center}
 
@@ -102,30 +99,34 @@ Enfin, l'ajout de ces deux dernières équations à notre système et leur réso
 
 \subsection{Bilan de la combustion du méthane}
 
-Avant d'injecter les réactifs (\ce{CH4}, \ce{H2O} et air) dans le réformeur primaire, il est nécessaire qu'ils soient à la température de celui-ci, c'est-à-dire $T$. Pour celà, nous utilisons un four à méthane produisant la chaleur $Q$ servant à chauffer les réactifs. Lors de la combustion du méthane, la réaction produit une énergie $\Delta H_{m,\text{comb}}$ d'énergie par mole de méthane, dont 75\% est absorbé par les réactifs :
 \[
-    Q + n_\text{four} \Delta H_{m,\text{comb}} \cdot (75\%) = 0
+    \Delta H_\text{RP} = R_1 \Delta H_{m,\text{R1}} + R_2 \Delta H_{m,\text{R2}}
     \text.
 \]
 
-On cherche le nombre de moles de méthane $n_\text{four}$ nécessaire pour chauffer $n_{i,\ce{CH4}}$, $n_{i,\ce{H2O}}$ et $n_{i,\text{air}}$ moles de \ce{CH4}, \ce{H2O} et d'air. Pour cela, il nous faut obtenir $Q$ et $\Delta H_{m,\text{comb}}$.
+Lorsque l'on calcule la variation d'enthalpie $\Delta H_\text{RP}$ des deux réactions se produisant au sein du réformeur primaire, pondérée par les nombres de moles qui réagissent, on se rend compte que celle-ci est positive : le bilan énergétique du réformeur primaire est endothermique. Il en découle que, pour y maintenir une température $T$ constante, il est nécessaire d'injecter une quantité de chaleur $Q = \Delta H_\text{RP}$; c'est le rôle du four. L'inconnue que nous cherchons est $n_\text{four}$, le nombre de moles de méthane à brûler.
 
-Il n'est pas nécessaire de calculer $\Delta H_{m,\text{comb}}$ : sa valeur peut être trouvée dans des tables thermodynamiques. Passons donc directement à $Q$. Pour l'obtenir, il suffit d'intégrer les capacités calorifiques des réactifs de $T_0 = \unit{25}{\celsius}$ à $T$. Attention, il faut prendre en compte que l'eau n'est pas à l'état gazeux au départ :
+Pour commencer, nous allons considérer en détail $\Delta H_\text{RP}$, la variation d'enthalpie dans le réformeur primaire. Celle-ci se décompose en deux, une partie provenant de la réaction 1, l'autre provenant de la réaction 2 :
+\[
+    \Delta H_\text{RP} = R_1 \Delta H_{m,\text{R1}} + R_2 \Delta H_{m,\text{R2}}
+    \text.
+\]
+
+Passons au four : dans celui-ci, nous brûlons du méthane selon la réaction de combustion
+\[\ce{CH4 + O2 -> CO2 + 2H2O}\text,\]
+avec $\Delta H_\text{comb} < 0$ et un rendement thermique $\eta_\text{th} = 75\%$. La chaleur fournie par la combustion de $n$ moles de méthane dans le four est donc :
+\[
+    Q = - n_\text{four} \Delta H_{m,\text{comb}} \cdot \eta_\text{th}
+    \text.
+\]
+
+La relation $Q = \Delta H_\text{RP}$ nous permet de résoudre pour $n_\text{four}$ :
 \begin{align*}
-    Q &= \int_{T_0}^T\! (n_{i,\ce{CH4}} C_{m,\ce{CH4}} + n_{i,\text{air}} C_{m,\text{air}} \,\diff{T'}) \\
-      &+ n_{i,\ce{H2O}} \left( \int_{T_0}^{\unit{373}{\kelvin}}\! C_{m,\ce{H2O(l)}} \,\diff{T'}
-       + \int_{\unit{373}{\kelvin}}^T\! C_{m,\ce{H2O(g)}} \,\diff{T'}
-       + \Delta H_{m,\text{vap},\ce{H2O}} \right)
+    - n_\text{four} \Delta H_{m,\text{comb}} \cdot \eta_\text{th} &= R_1 \Delta H_{m,\text{R1}} + R_2 \Delta H_{m,\text{R2}} \\
+    n_\text{four} &= -\frac{R_1 \Delta H_{m,\text{R1}} + R_2 \Delta H_{m,\text{R2}}}{\Delta H_{m,\text{comb}} \cdot \eta_\text{th}}
     \text.
 \end{align*}
-Les capacités calorifiques et l'enthalpie de vaporisation de l'eau peuvent bien évidemment être trouvées dans des tables thermodynamiques.
-
-Nous pouvons maintenant obtenir la quantité de méthane nécessaire :
-\[
-    n_\text{four} = -\frac{Q}{0.75 \Delta H_{m,\text{comb}}}
-    \text.
-\]
-Notons que la quantité de \ce{CO2} produite --- pensons à la planète --- est également égale à $n_\text{four}$.
+Notons qu'il s'agit à la fois de la quantité de méthane consommée et --- pensons à la planète --- de \ce{CO2} produite.
 
 \subsection{Bilan total}
 
@@ -137,8 +138,9 @@ Le bilan total se calcule simplement en additionnant les valeurs trouvées dans 
         \hline
         $(n_{i,\ce{CH4}} + n_\text{four}) M_\ce{CH4}$ & $n_{i,\ce{H2O}} M_\ce{H2O}$ & $n_{i,\text{air}} M_\text{air}$ & $(n_{f,\ce{CO2}} + n_\text{four}) M_\ce{CO2}$ \\
         \hline
-        \unit{674.8}{\ton} & \unit{275.2}{\ton} & \unit{1639}{\ton} & \unit{1851}{\ton}
+        \color{gray}$\unit{626.00}{\ton} + \unit{75.45}{\ton}$ & \color{gray}\unit{275.2}{\ton} & \color{gray}\unit{1639}{\ton} & \color{gray}$\unit{1717.58}{\ton} + \unit{207.02}{\ton}$ \\
+        $\unit{701.45}{\ton}$ & \unit{275.2}{\ton} & \unit{1639}{\ton} & $ \unit{1924.61}{\ton}$
 
     \end{tabular}
 \end{center}
-Ces valeurs sont données pour \unit{1500}{\ton} d'ammoniac et une température de \unit{1080}{\kelvin}.
+Ces valeurs sont données pour \unit{1500}{\ton} d'ammoniac et une température de \unit{1000}{\kelvin}.
