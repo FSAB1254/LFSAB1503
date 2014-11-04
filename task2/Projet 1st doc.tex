@@ -17,51 +17,27 @@
 
 \section{Synthèse \ce{NH3} et séparation}
 
-Nous allons maintenant étudier de manière plus précise la dernière étape du procédé qui comprend le réacteur de synthèse d’ammoniac et l'étape de séparation des produits.
-La réaction de synthèse de \ce{NH3} est suivante :
-$$ \ce{N_2 + 3H2 <=> 2NH3}$$
+Nous allons maintenant étudier un peu plus en détail la dernière étape du procédé qui comprend le réacteur de synthèse d’ammoniac et une étape de séparation des produits.
+La synthèse de \ce{NH3} s'écrit :
+$$ \ce{N_2 + 3H_2 \leftrightarrow 2NH_3}$$
 
 \subsection{Manière qualitative}
-Voyons de quelle manière évolue la réaction en faisant varier d'une part la température, et d'autre part la pression. Pour cela, nous nous basons sur le fait qu'une réaction chimique a toujours tendance à   aller à l'encontre des modifications qui lui sont apportées, à savoir le principe énoncé par le Chatelier. Dans notre cas, nous devons favoriser la réaction allant dans le sens de production de \ce{NH3}.
+Voyons maintenant de quelle manière évolue la réaction en faisant varier d'une part la température, et d'autre part la pression. Pour cela, nous nous basons sur le fait qu'une réaction chimique aura toujours tendance à vouloir aller à l'encontre des modifications qui lui sont apportées, à savoir le principe énoncé par le Chatelier. Dans notre cas, nous devons favoriser la réaction allant dans le sens de production de \ce{NH3}.
 
-Tout d'abord, regardons ce qu'il en est au niveau de la pression. Nous devons augmenter celle-ci car de cette manière le système réagira en favorisant le sens de réaction produisant un plus petit nombre de moles de gaz, à savoir \ce{NH3} dans le but de rétablir la pression. 
+Tout d'abord, regardons ce qu'il en est au niveau de la pression. Nous devons faire augmenter celle-ci, car de cette manière le système réagira en favorisant le sens de réaction produisant le plus petit nombre de moles de gaz, à savoir \ce{NH3} dans le but de rétablir la pression. 
 
-Ensuite, nous allons étudier le comportement de notre réaction lorsqu'on modifie la température. Pour cela, nous devons déterminer si la réaction est endothermique ou exothermmique. Nous calculons donc le $\Delta H$  de la réaction. $$\Delta H^0_r = \unit{-92,4}{kJ.mol}$$
-Le signe de $\Delta H$ étant négatif, notre réaction est bien exothermique. De ce fait, nous devons diminuer la température afin de favoriser la réaction à libérer de la chaleur, et donc de favoriser les produits.
+Ensuite, nous allons étudier le comportement de notre réaction lorsqu'on modifie la température. Pour cela, nous devons déterminer si la réaction est soit endothermique soit exothermmique. Nous calculons donc le $\Delta H$  de la réaction. $$\Delta H = \unit{-92,4}{kJ.mol}$$
+Le signe de $\Delta H$ étant négatif, notre réaction est bien exothermique. De ce fait, nous devons diminuer la température afin que l'on favorise la réaction à dégager de la chaleur, et donc à se déplacer vers la droite.
 
-Nous en venons donc à la conclusion qu'il nous faudrait une pression théoriquement infinie et une température la plus basse possible. Cependant, nous sommes restreint économiquement et techniquement, nous devons donc trouver un juste milieu, une conversion totale n'est donc pas envisageable. 
-\\
-
-Une pression très élevée est économiquement et techniquement irréalisable car les tuyaux et autres équipements supportant les flux devront aligner leurs performances pour répondre à des critères beaucoup plus stricts qu'avec de basses pressions.
-Pour cette raison, il serait plus judicieux de réinjecter  le diazote et le dihydrogène qui n'ont pas réagi au cours de la réaction (la réaction est à l'équilibre!) dans le réacteur. Pour effectuer cette séparation, les éléments du réacteur sont refroidis, l'ammoniac est liquéfié (l'ammoniac se condense à température plus élevé que le dihydrogène et diazote) et les réactifs sont réintroduits dans le réacteur.
+Nous en venons donc à la conclusion qu'il nous faudrait ne pression théoriquement infinie et une température la plus basse possible. Cependant, nous sommes restreint économiquement et techniquement, nous devons donc trouver un juste milieu, une conversion totale n'est donc pas envisageable. 
 
 \subsection{Manière quantitative}
 
-De manière plus rigoureuse, nous pouvons démontrez l'influence de la température et de la pression de notre réaction à l'aide d'une modélisation mathématique.
+Variation de la température $\frac{\delta G}{\delta t}$ :
+$$\Delta G = \Delta H - T \Delta S $$
+$$ avec: \Delta H = \unit{-92,4}{kJ.mol} $$ \
+$$ \Delta S = \unit{-198,7}{kJ.mol} $$
 
-Démontrons qu'une diminution de la température favorise la production de produits pour toute réaction exothermique avec l'équation de Van't Hoff.
-
-$$\ln{\frac{K2}{K1}} = \frac{\Delta H^0_r}{R}(\frac{1}{T1} - \frac{1}{T2}) $$ 
-
-$ \Delta H^0_r < 0$, si $T2<T1$ alors $1/T2 > 1/T1$. Donc $\ln{K2/K1} > 0$, ce qui implique que $K2/K1>1$  et donc que $ K2>K1$.
-
-Si $K$ augmente la réaction favorise les produits, le principe de Le Chatelier est donc bien vérifié.
-\\
-
-Pour la pression, il faut étudier l'influence de la pression totale $p_{tot}$ dans le quotient réactionnel $Q_r$ car $K(T)$ ne dépend que de la température. Ensuite, il suffit de comparer $Q_r$ et  $K(T)$ sans faire varier la température. 
-
-$$ Q_r= \frac{\chi_{\ce NH3}^2 p_{tot}^2}{\chi_{\ce N2} p_{tot} \chi_{\ce H2}^3 p_{tot}^3}=\frac{\chi_{\ce NH3}^2}{\chi_{\ce N2} \chi_{\ce H2}^3 \textcolor{red}{p_{tot}^2}}$$ 
-
-Lorsque la pression augmente, $Q_r$ diminue, $Q_r < K_c$ et donc la réaction favorise les produits.
- 
-Lorsque la pression diminue, $Q_r$ augmente, $Q_r > K_c$ et donc la réaction favorise les réactifs.
-
-Le principe de Le Chatelier est vérifié.
-
-
-  
-
-
-
+% + SUITE
 
 \end{document}
