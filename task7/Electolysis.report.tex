@@ -1,0 +1,64 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[squaren,Gray]{SIunits} % Physical units rendering
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+%\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{color} % Colors in text
+\usepackage[version=3]{mhchem} % Chemical reactions
+
+\title{Production d'hydrogène par électrolyse}
+\author{Sliti Abbas}
+\date{10 Novembre 2014}
+
+
+
+\begin{document}
+
+\maketitle
+
+
+
+Au cours du laboratoire, nous avons fait varier plusieurs paramètres afin de déterminer les meilleurs conditions de production d'hydrogène. Les trois paramètres sont le pH, la température et le courant (en Ampère). Nous avons étudié la vitesse de production d'hydrogène.
+
+\section{Conditions opératoires de production d'hydrogène}
+
+\subsection{La température}
+
+La température n'influence pas la vitesse de production d'hydrogène. Il ne faut aucun apport de chaleur et donc de travailler à température ambiante.
+
+
+
+\subsection{Le courant}
+
+Le courant est le seul paramètre qui influence directement la vitesse de production d'hydrogène. De plus, ces deux grandeurs sont même proportionnelles! En effet, nous nous sommes aperçus que doubler le courant doublait également la vitesse de production. Cependant, nous verrons que celui-ci peut être perturbé par l'acidité du milieu(pH). Par conséquent, plus le courant est élevé plus le flux d'hydrogène sera important.
+
+
+\subsection{L'acidité du milieu}
+
+La variation du pH n'influence pas directement la vitesse de production de l'hydrogène. Cependant, pour obtenir un même courant à des pH différents, il fallait ajuster la tension (V). A certains pH, il était même impossible d'obtenir un courant de 0.5 A à cause de la tension limitée que pouvait produire notre générateur (64 V maximum). Il est donc important de bien ajuster l'acidité du milieu en fonction du générateur à disposition. Cependant, l'électrolyse peut se réaliser sans apport de changement de pH. Il est même préférable économiquement de réaliser cette expérience à pH neutre car le modifier suggère d'importer des réactifs supplémentairs (un acide ou une base) en grande quantité. 
+
+\section{Puissance requise pour un flux d'hydrogène}
+
+Pour produire 1500 t/j d'ammoniac, il faut disposer d'un flux d'hydrogène de 1529.1 mol/s. Nous supposerons que le rendement est de 100\% et que la réaction se déroule dans les conditions standard. 
+
+La réaction de l'electrolyse de l'eau est la suivante : $$\ce {2H2O(l) -> 2H2(g) + O2(g)}$$ 
+
+Calculons l'enthalpie molaire de réaction :
+
+$$ \Delta H_r^0 =  \unit{572}{kJ.mol^{-1}} $$
+
+La puissance (P) à fournir au système est simplement le produit du flux d'hydrogène exigé et de $ \Delta H_r^0$ :
+
+$$ P = 572*1529.1 = \unit{874 125}{kW} $$
+
+
+
+\end{document}
