@@ -37,8 +37,7 @@ Pour en réduire l'impact en CO2, considérons les différentes alternatives :
 
 - utiliser une autre source d'hydrogène :
   - hydrolyse de l'eau,
-  - gazéification à la vapeur de la biomasse,
-  - production biologique par des algues ;
+  - gazéification à la vapeur de la biomasse ;
 - remplacer le gaz naturel par du biogaz ;
 - capturer et stocker le CO2.
 
@@ -60,7 +59,7 @@ ce qui nous donne un rapport de 16.3 à 13.4 kgCO2/kgH2 selon que le rendement e
 
 *Cette valeur prend en compte le four à méthane, car son utilité est couplée à celle des réformeurs.
 
-En conclusion, à moins d'utiliser une source d'électricité propre, l'hydrolyse n'est pas préférable au système actuel en terme de rejet de CO2.
+Il apparait donc qu'à moins d'utiliser une source d'électricité propre, l'hydrolyse n'est pas préférable au système actuel en terme de rejet de CO2.
 
 ##### Gazéification à la vapeur de la biomasse
 
@@ -84,6 +83,14 @@ DeltaH methane = -890 kJ/molCH4 = -890 kJ/molCO2
 
 ##### Biogaz
 
+L'utilisation de biogaz à la place du gaz naturel permet une diminution du rejet de CO2 pour les mêmes raisons que la biomasse : le dioxyde de carbone rejeté n'est autre que celui ayant été absorbé par la végétation pour la production du biogaz. Il s'agit d'un circuit fermé, qui ne diminue ni n'augmente la quantité de CO2 présente dans l'atmosphère.
+
+Généralement, le biogaz utilisé industriellement est différent du biogaz initial : le premier est beaucoup plus pure (environ 96% de méthane) que le second (qui contient notamment, en plus du CH4, du CO2, N2, H2, H2S et O2). La raison est que, dans la plupart des procédés, une concentration élevée en méthane est un facteur clé. Dans notre cas, la situation est différente : les composés CO2, N2, H2 et O2 sont déjà réactifs ou produits de certaines étapes du procédé Haber-Bosch. On peut donc se permettre d'utiliser du biogaz de faible qualité --- c'est-à-dire moins cher --- dont on aurait enlevé les composés corrosifs tels que le sulfure d'hydrogène.
+
+##### Capture du CO2
+
+*Toutes les recherches doc. effectuées jusqu'ici semblent indiquer qu'aucune solution d'envergure industrielle accessible en Belgique n'existe.*
+
 
 ### 3. Analyse des rejets de produits secondaires (autres que CO2)
 
@@ -97,4 +104,3 @@ DeltaH methane = -890 kJ/molCH4 = -890 kJ/molCO2
 - N2(g)
 - H2(g)
 - Ar(g)
-
