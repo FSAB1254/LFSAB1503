@@ -30,6 +30,8 @@ Si l'eau de sortie de l'échangeur de chaleur est disponible à haute températu
 - injecter l'eau dans le réformeur primaire, afin de profiter de sa haute température pour soulager l'usage du four ;
 - utiliser l'eau pour chauffer les installations "humaines", c'est-à-dire les bureaux, réfectoires, etc.
 
+Une analyse en détail sera nécessaire afin de déterminer lesquelles de ces solutions sont réalistes et rentables.
+
 ##### Basse température
 
 Prenons l'exemple de l'eau de sortie du condenseur d'ammoniac. Sa température, donnée, de 95°C (voir rapport 1 de la tâche 1), est trop faible pour un usage industriel*. Cependant, une température de 95°C est, à l'échelle humaine, suffisante pour beaucoup d'usages. Une utilité envisageable pour cette eau de refroidissement est donc le chauffage des installations pour le personnel.
@@ -118,11 +120,18 @@ Généralement, le biogaz utilisé industriellement est différent du biogaz ini
 
 #### Fonctionnement continu
 
-- H2O(l) à haute température
-- H2O(g)
+Le seul déchet rejeté par le fonctionnement normal du plant, en dehors du CO2, est l'eau à haute température des circuits de refroidissement et des réacteurs. Bien que l'eau en soi n'est pas polluante, la chaleur qu'elle transporte, lorsqu'elle est rejeté dans un cours d'eau, peut avoir un impact sur l'écosystème local. Cela porte le nom de *pollution thermique*.
+
+Une manière d'éviter cette pollution est de recycler cette eau par une autre utilisation qui profiterait de sa température, avant de finalement la rejeter dans une rivière. Ceci est discuté plus en détail dans la section "Analyse de la consommation énergétique" > "Condenseurs et circuits de refroidissements" ci-dessus.
 
 #### Purge
 
-- N2(g)
-- H2(g)
-- Ar(g)
+Bien que le but de la purge est d'éliminer l'argon qui encrasse le réacteur, le rejet d'autre composés est inévitable. La flowsheet nous indique quels sont les composés présents à cette étape de la production : il s'agit de N2(g), H2(g), Ar(g) et NH3(g). Ceux-ci seront, lors de la purge, rejetés dans l'atmosphère.
+
+Le diazote, naturellement présent dans l'air, ne constitue pas une pollution. Il en va de même pour l'argon et le dihydrogène, bien que ce dernier soit présent en très faible concentration. L'impact de ces rejets, comparé au volume de l'atmosphère, est plus que négligeable.
+
+L'ammoniac, au contraire, est bel et bien un polluant. Il s'agit même, chez nous, du principal responsable de l'acidification des eaux et des pluies acides (source: http://www.statistiques.developpement-durable.gouv.fr/lessentiel/ar/215/1101/emissions-polluants-acides.html), bien que la grande majorité de cette pollution provienne non pas des industries, mais bien du secteur agricole (source: http://www.citepa.org/fr/pollution-et-climat/polluants/aep-item/ammoniac).
+
+Une manière d'éviter le rejet d'ammoniac dans l'atmosphère serait de faire passer le contenu d'une purge dans un condenseur, afin de séparer le NH3 des autres composés. Une étude plus détaillée devra être entreprise pour déterminer si la pollution engendré par les purges est suffisante pour légitimer le processus.
+
+Pour conclure sur un petit aparté, il est à considérer que le  dihydrogène et l'ammoniac rejetés lors des purges constituent tout deux des substances dangereuses et explosives. Le contact avec l'ammoniac peut provoquer des brûlures et son inhalation à forte dose peut provoquer la mort. (Source: http://www.citepa.org/fr/pollution-et-climat/polluants/aep-item/ammoniac).  Il est donc important de prendre en compte les risques qui viennent avec la manipulation de ces substances, mais cela n'est pas l'objet de cette discussion et devrait plutôt être traité lors d'une HAZOP.
