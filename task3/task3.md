@@ -5,14 +5,36 @@ Tâche 3
 
 ### 1. Analyse de la consommation énergétique
 
-#### Zones de consommation d'énergie
+Nous allons considérer ici les entrées et sorties d'énergie de notre procédé de production d'ammoniac, afin de déterminer des possibles améliorations qui réduiraient notre consommation totale. Les points critiques analysés ici sont :
 
-- Four à méthane
+- le four à méthane ;
+- la condensation du CO2, H2O (après le WGS) ;
+- le refroidissement du réacteur à ammoniac ;
+- la condensation du NH3 (après le réacteur).
 
-#### Zones de pertes d'énergie
+#### Four à méthane
 
-- Refroidissement et extraction du CO2, H2O (après le WGS)
-- Refroidissement et extraction du NH3 (après le réacteur)
+Le coût en énergie du four est une valeur relativement fixe pour une certaine quantité d'ammoniac à produire. Elle dépend fortement de la méthode utilisée pour produire l'hydrogène (voir "Analyse des rejets de CO2" > "Réduire l'impact") et peut donc être réduite de cette façon-là. Cela n'est cependant pas toujours rentable (voir détails dans la section en question).
+
+Peu de détails sont donnés sur le fonctionnement et la structure du four. La valeur de son rendement --- 75% --- nous est fournie sans explication. Il est donc difficile de chercher à optimiser le processus ; néanmoins, nous avons considéré l'aspect suivant : le four rejette des vapeurs --- CO2, H2O et N2 --- à haute température, qui sont directement libérés dans l'atmosphère. Une façon courante de réutiliser ces produits est de s'en servir pour préchauffer l'air d'entrée. L'oxygène et l'azote injectés dans le four sont généralement responsables d'une certaine perte de rendement car, étant à basse température lors de leur entrée dans le four, une partie de la chaleur produite sert à les réchauffer. Utiliser les vapeurs de sortie pour préchauffer l'air d'entrée permet donc d'augmenter le rendement du four.
+
+#### Condenseurs et circuits de refroidissements
+
+On considère que ces procédés sont effectués à l'aide d'échangeurs de chaleur fonctionnant avec de l'eau. Deux cas différents sont à examiner :
+
+##### Haute température
+
+Si l'eau de sortie de l'échangeur de chaleur est disponible à haute température --- typiquement, plusieurs centaines de kelvins ---, elle possède une valeur économique relativement importante. Plusieurs possibilités sont envisageables :
+
+- envoyer l'eau dans des turbines afin de produire du courant ;
+- injecter l'eau dans le réformeur primaire, afin de profiter de sa haute température pour soulager l'usage du four ;
+- utiliser l'eau pour chauffer les installations "humaines", c'est-à-dire les bureaux, réfectoires, etc.
+
+##### Basse température
+
+Prenons l'exemple de l'eau de sortie du condenseur d'ammoniac. Sa température, donnée, de 95°C (voir rapport 1 de la tâche 1), est trop faible pour un usage industriel*. Cependant, une température de 95°C est, à l'échelle humaine, suffisante pour beaucoup d'usages. Une utilité envisageable pour cette eau de refroidissement est donc le chauffage des installations pour le personnel.
+
+*Comme expliqué au cours de thermodynamique, la chaleur à basse température n'a pas une valeur économique très élevée, car c'est la différence de température entre une source chaude et une source froide qui importe réellement.
 
 
 ### 2. Analyse des rejets de CO2
@@ -29,25 +51,25 @@ L'analyse du procédé pour la production de 1500 t de NH3 et une température d
 - dans le four : 207 t ;
 - dans le RP + WGS : 1718 t.
 
-La source de CO2 la plus importante n'est donc pas le four, mais bien les réacteurs.
+La source de CO2 la plus importante n'est donc pas le four, mais bien les réacteurs. C'est donc sur ceux-ci que nous allons concentrer nos recherches.
 
 #### Réduire l'impact
 
 Pour en réduire l'impact en CO2, considérons les différentes alternatives :
 
 - utiliser une autre source d'hydrogène :
-  - hydrolyse de l'eau,
+  - électrolyse de l'eau,
   - gazéification à la vapeur de la biomasse ;
 - remplacer le gaz naturel par du biogaz ;
 - capturer et stocker le CO2.
 
-##### Hydrolyse de l'eau
+##### Électrolyse de l'eau
 
-Si la réaction d'hydrolyse ne produit pas de CO2, l'électricité qui permet d'effectuer cette réaction n'est pas nécessairement propre. Nous allons réaliser une rapide estimation de la quantité de CO2 rejeté par masse d'hydrogène produite.
+Si la réaction d'électrolyse ne produit pas de CO2, l'électricité qui permet d'effectuer cette réaction n'est pas nécessairement propre. Nous allons réaliser une rapide estimation de la quantité de CO2 rejeté par masse d'hydrogène produite.
 
 En supposant que l'usine se trouve en Belgique, le CO2 rejeté par kWh d'électricité est de 0.29 kgCO2/kWh(él.). (source : http://www.econologie.com/europe-emissions-de-co2-par-pays-et-par-kwh-electrique-articles-3722.html)
 
-La réaction d'hydrolyse H2O -> H2 + 1/2O2 est endothermique et sa variation d'enthalpie est de 285 kJ/molH2. En outre, le rendement industriel d'une telle réaction varie généralement entre 70% et 85%, en fonction de l'installation et du procédé utilisé. (source: http://www.afhypac.org/images/documents/fiche_3.2.1_electrolyse_de_l_eau_rev._mai_2013_th.a.pdf)
+La réaction d'électrolyse H2O -> H2 + 1/2O2 est endothermique et sa variation d'enthalpie est de 285 kJ/molH2. En outre, le rendement industriel d'une telle réaction varie généralement entre 70% et 85%, en fonction de l'installation et du procédé utilisé. (source: http://www.afhypac.org/images/documents/fiche_3.2.1_electrolyse_de_l_eau_rev._mai_2013_th.a.pdf)
 
 Nous pouvons résoudre pour (masse de CO2)/(masse de H2) :
 
@@ -59,11 +81,11 @@ ce qui nous donne un rapport de 16.3 à 13.4 kgCO2/kgH2 selon que le rendement e
 
 *Cette valeur prend en compte le four à méthane, car son utilité est couplée à celle des réformeurs.
 
-Il apparait donc qu'à moins d'utiliser une source d'électricité propre, l'hydrolyse n'est pas préférable au système actuel en terme de rejet de CO2.
+Il apparait donc qu'à moins d'utiliser une source d'électricité propre, l'électrolyse n'est pas préférable au système actuel en terme de rejet de CO2.
 
 ##### Gazéification à la vapeur de la biomasse
 
-Ce procédé permet la production d'hydrogène à base de biomasse (composition équivalente à C6H9O4) et d'eau. La réaction est faiblement endothermique (70 kJ/molH2 contre 285 kJ/molH2 pour l'hydrolyse), mais l'intérêt réel en terme de CO2, par rapport au réformage du méthane, vient du fait que le dioxyde de carbone rejeté par le processus est, pour ainsi dire, nul. En effet, si une certaine quantité de CO2 est produite lors de la réaction, il s'agit de la même quantité qui a été absorbée par photosynthèse, en amont du processus.
+Ce procédé permet la production d'hydrogène à base de biomasse (composition équivalente à C6H9O4) et d'eau. La réaction est faiblement endothermique (70 kJ/molH2 contre 285 kJ/molH2 pour l'électrolyse), mais l'intérêt réel en terme de CO2, par rapport au réformage du méthane, vient du fait que le dioxyde de carbone rejeté par le processus est, pour ainsi dire, nul. En effet, si une certaine quantité de CO2 est produite lors de la réaction, il s'agit de la même quantité qui a été absorbée par photosynthèse, en amont du processus.
 
 (source : http://www.afh2.org/uploads/memento/biohydrogene.pdf)
 
