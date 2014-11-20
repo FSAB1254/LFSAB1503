@@ -1,0 +1,112 @@
+\documentclass[10pt,a4paper]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[squaren,Gray]{SIunits} % Physical units rendering
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+\usepackage{xfrac}
+%\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{color} % Colors in text
+\usepackage[version=3]{mhchem} % Chemical reactions
+\begin{document}
+\chapter{Tâche 3}
+\textit{Analyse de l'impact environnemental du procédé en termes de consommation énergétique et de rejet de \ce{CO2} et produits secondaires. Cette analyse fera ressortir les points sensibles du procédé et permettra d'établir une liste de recommandations argumentées pour réduire l'impact de l'activité de production sur l'environnement.}
+\section{Analyse de la consommation énergétique}
+Nous allons considérer ici les entrées et sorties d'énergie de notre procédé de production d'ammoniac, afin de déterminer des possibles amélioration qui réduiraient notre consommation totale. Les points critiques analysés ici sont:
+\begin{itemize}
+\item Le four à méthane;
+\item la condensation de \ce{CO2}, \ce{H2O} (après le WGS);
+\item le refroidissement du réacteur à ammoniac;
+\item la condensation du \ce{NH3} (après le réacteur).
+\end{itemize}
+\subsection{Four à méthane}
+Le coût en énergie du fou est une valeur relativement fixe pour une certaine quantité d'ammoniac à produire. Elle dépend fortement de la méthode utilisée pour produire l'hydrogène (cfr analyse rejet TODO) et peut donc être réduite de cette façon-là. Cela n'est cependant pas toujours rentable (cfr section en question).
+
+Peu de détails sont donnée sur le fonctionnement et la structure du four. La valeur de son rendement (\unit{75}{\%} nous est fournie sans explication. Il est donc difficile de chercher à optimiser le processus; néanmoins, nous avons considéré l'aspect suivant: le four rejette des vapeurs (\ce{CO2, H2O, N2}) à haute température, qui sont directement libérés dans l’atmosphère. Une façon courante de réutiliser ces produits est de s'en servir pour préchauffer l'air d'entrée. L'oxygène et l'azote injectés dans le four sont généralement responsables d'une certaine perte de rendement, en effet, étant à basse température lors de leur entrée dans le four, une partie de la chaleur produite servira à les réchauffer. Utiliser les vapeurs de sortie pour préchauffer l'air permet donc d'augmenter le rendement du four.
+\subsection{Condenseurs et circuits de refroidissements}
+On considère que ces procédés sont à l'aide d'échangeurs de chaleur fonctionnant avec de l'eau. Deux cas différents sont à examiner:
+\paragraph*{Haute température:}Si l'eau de sortie de l'échangeur de chaleur est disponible à haute température\footnote{Typiquement, plusieurs centaines de Kelvins}, elle possède une valeur économique relativement importante. Plusieurs possibilité sont envisageables:
+\begin{itemize}
+\item Envoyer l'au dans des turbines afin de produire du courant;
+\item injecter l'eau de le ré-formeur primaire, afin de profiter de sa haute température pour diminuer l'usage du four;
+\item utiliser l'eau pour chauffer les installations "humaines"; c'est à dire les bureaux, réfectoires, ...
+\end{itemize}
+Une analyse en détail sera nécessaire afin de déterminer lesquelles de ces solutions sont réalistes et rentables
+\paragraph*{Basse température:} Prenons l'exemple de l'eau sortie du condensateur d'ammoniac. Sa température, donnée, de \unit{95}{\degree}(cfr rapport 1 de la tâche 1), %TODO )
+est trop faible pour un usage industriel\footnote{Comme expliqué au cours de thermodynamique, la chaleur à basse température n'a pas de valeur économique très élevée, car c'est la différence de température entre une source chaude et une source froide qui importe réellement.}
+\section{Analyse des rejets de \ce{CO2}}
+\subsection{Source de \ce{CO2}}
+Les différentes sources de \ce{CO2} de l'installation, telles qu'indiquées sur la flowsheet sont:
+\begin{itemize}
+\item Le four à méthane;
+\item les réactions des réformeurs primaires et secondaires, et du water-gas shift.
+\end{itemize}
+L'analyse du procédé pour la production de \unit{1500}{\tonne} de \ce{NH3} et une température de sortie de ré-formeur primaire de \unit{1000}{\kelvin} nous donne les valeurs suivantes de \ce{CO2} rejeté:
+\begin{enumerate}
+\item Dans le four: \unit{207}{\tonne};
+\item dans le réformeur primaire et le water-gas shift: \unit{1718}{\tonne}
+\end{enumerate}
+La source de \ce{CO2} la plus importante n'est donc pas le four, mais bien les réacteurs. C'est donc sur ceux-ci que nous allons concentrer nos recherches.
+\subsection{Réduire l'impact}
+Pour réduire l'impact de \ce{CO2}, considérons les différentes alternatives:
+\begin{enumerate}
+\item Utiliser une autre source d'hydrogène:
+	\begin{itemize}
+	\item Électrolyse de l'eau,
+	\item gazéification  à la vapeur de la biomasse.
+	\end{itemize}
+\item remplacer le gaz naturel pas du biogaz;
+\item capturer et stocker le \ce{CO2}.
+\end{enumerate}
+\paragraph{Électrolyse de l'eau}
+Si la réaction d'électrolyse ne produit pas de \ce{CO2}, l'électricité qui permet d'effectuer cette réaction n'est pas nécessairement propre. Nous allons réaliser une rapide estimation de la quantité de \ce{CO2} rejeté par masse d'hydrogène produite.
+
+En supposant que l'usine se trouve en Belgique, le \ce{CO2} rejeté par KWh d'électricité est de \unit{0.29}{kg\ce{CO2}/kWh}.
+
+La réaction d'électrolyse $$\ce{H2O -> H2 + \frac{1}{2} O2}$$ est endothermique et sa variation d'enthalpie est de \unit{285}{kJ/mol} d'\ce{H2}. En outre, le rendement industriel d'une telle réaction varie généralement entre \unit{70}{\%} et \unit{85}{\%}, en fonction de l'installation et du procédé utilisé.
+
+Nous pouvons résoudre pour (masse de \ce{CO2})/(masse d'\ce{H2}):
+
+\begin{center}
+\textbf{TODO}
+\end{center}
+\paragraph{Gazéification à la vapeur de la biomasse}
+Ce procédé permet la production d'hydrogène à base de biomasse (composition équivalente à \ce{C6H9O4}) et d'eau. La réaction est faiblement endothermique  (\unit{70}{kJ/mol} d'\ce{H2} contre \unit{285}{kJ/mol} d'\ce{H2} pour l'électrolyse), mais l'intérêt réel en terme de \ce{CO2}, par rapport au réformage du méthane, vient du fait que le dioxyde de carbone rejeté par le processus est, pour ainsi dire, nul. En effet, si une certaine quantité de \ce{CO2} de produite lors de la réaction, il s'agit de la même quantité qui a été absorbée par photosynthèse, en amont du processus.
+%(source : http://www.afh2.org/uploads/memento/biohydrogene.pdf)
+ Au total, la production de dioxyde de carbone provient uniquement du chauffage de la biomasse, à raison de \unit{70}{kJ/mol} d'\ce{H2} ou \unit{34.72}{MJ/kg} d'\ce{H2}. Si l'on utilise le même four que celui utilisé pour chauffer le réformeur pimaire, on obtient un impact \ce{CO2} de \unit{2.289}{kg\ce{C02}/kg\ce{H2}}. Pour \unit{1500}{\tonne} d'ammoniac, cela revient à \unit{609}{\tonne} de \ce{CO2}. 
+ 
+En conclusion, la gazéification à la vapeur de la biomasse pourrait constituer une alternative intéressante, en terme de rejet de \ce{CO2}, au procédé actuel de réformage.
+
+Détail des caculs
+\begin{center}
+\textbf{TODO}
+\end{center}
+\paragraph{Biogaz}
+l'utilisation de biogaz à la palce du gaz naturel permet une diminution du rejet de \ce{CO2} pour les mêmes raison que la biomasse: le dioxyde de carbone rejeté n'est autre que celui ayant été absorbé par la végétation pour la production du biogaz. Il s'agit d'un circuit fermé, qui ne diminue ni n'augmente la quantité de \ce{CO2} présente dans l'atmosphère.
+Généralement, le biogaz utilisé industriellement est différent du biogaz initial: le premier est beaucoup plus pure (environ 96\% de méthane) que le second (qui contient notamment, en plus du \ce{CH4}, du \ce{CO2}, \ce{N2}, \ce{H2}, \ce{H2S} et \ce{O2}). La raison est que, dans la plupart des procédés, une concentration élevée en méthane est un facteur clé. Dans notre cas, la situation est que, dans la plupart des procédes, une concentration élevée en méthane est un facteur clé. Dans notre cas, la situation est différent: les composés \ce{CO2}, \ce{N2}, \ce{H2} et \ce{O2} sont déjà réactifs ou produits de certaines étapes du procédé Haber-Bosch. On peut donc se permettre d'utiliser du biogaz de faible qualité -- c'est-à-dire moins cher -- dont on aurait enlevé les composés corrosifs tels que le sulfure d'hydrogène.
+\paragraph{Capture du \ce{CO2}}
+Toutes les recherches doc. effectuées jusqu'ici semblent indiquer qu'aucune solution d'envergure industrielle accessible en Belgique n'existe.
+\section{Analyse des rejets de produits secondaires(autres que \ce{CO2}}
+\paragraph{Fonctionnement continu}
+Le seul déchet rejeté par le fonctionnement normal du plant, en dehors du \ce{CO2}, est l'eau à haute température des circuits de refroidissement et des réacteurs. Bien que l'eau en soi n'est pas polluante, la chaleur qu'elle transporte, lorsqu'elle est rejeté dans un cours d'eau, peut avoir un impact sur l'écosystème local. Cela porte le nom de pollution thermique.
+Une manière d'éviter cette pollution est de recycler cette eau par une autre utilisation qui profiterait de sa température, avant de finalement la rejeter dans une rivière. Ceci est discuté plus en détail dans la section "Analyse de la consommation énergétique" > "Condenseurs et circuits de refroidissement" ci-dessus.
+ \paragraph{Purge}
+ Bien que le but de la purge est d'éliminer l'argon qui encrasse le réacteur, le rejet d'autre composés est inévitable. La flowsheet nous indique quels sont les composés présents à cette étape de la production: il s'agit de \ce{N2}(g), \ce{H2}(g), \ce{Ar}(g) et \ce{NH3}(g). Ceux-ci seront, lors de la purge, rejetés dans l'atmosphère.
+ 
+ Le diazote, naturellement présent dans l'air, ne constitue pas une pollution. Il en va de même pour l'argon et le dihydrogène, bien que ce dernier soit présent en très faible concentration. L'impact de ces rejets, comparé au volume de l'atmosphère, est plus que négligeable.
+ 
+ L'ammoniac, au contraire, est bel et bien un polluant. Il s'agit même, chez nous, du principal responsable de l'acidification des eaux et des pluies acides (source: http://www.statistiques.developpement-durable.gouv.fr/lessentiel/ar/215/1101/emissions-polluants-acides.html), bien que la grande majorité de cette pollution provienne non pas des industries, mais bien du secteur agricole (source: http://www.citepa.org/fr/pollution-et-climat/polluants/aep-item/ammoniac).
+ 
+ Une manière d'éviter le rejet d'ammoniac dans l'atmosphère serait de faire passer le contenu d'une purge dans un condenseur, afin de séparer le \ce{NH3} des autres composés. Une étude plus détaillée devra être entreprise pour déterminer si la pollution engendré par les purges est suffisante pour légitimer le processus.
+ 
+ Pour conclure sur un petit aparté, il est à considérer que le dihydrogène et l'ammoniac rejetés lors des purges constituent tout deux des substances dangereuses et explosives. Le contact avec l'ammoniac peut provoquer des brûlures et son inhalation à forte dose peut provoquer la mort. (Source: http://www.citepa.org/fr/pollution-et-climat/polluants/aep-item/ammoniac). Il est donc important de prendre en compte les risques qui viennent avec la manipulation de ces substances, mais cela n'est pas l'objet de cette discussion et devrait plutôt être traité lors d'une HAZOP.
+ 
+
+
+\end{document}
