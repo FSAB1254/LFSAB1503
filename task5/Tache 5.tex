@@ -1,0 +1,81 @@
+\documentclass{report}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{chemist}
+\usepackage{SIunits}
+
+\title{\textbf{Tâche 5 : Dimensionnement d'une soupape de sécurité pour un tank de stockage d'ammoniac}}
+\author{Groupe 1254}
+\date{30/11/14} 
+
+\begin{document}
+\maketitle
+\section*{Contexte}
+Il nous ait demandé de prévoir une soupape de sécurité a installer sur un tank de \chemform{NH_3} à l'état liquide. En effet, ce tank est situé à proximité d'un réservoir de mazout et celui-ci représente un risque d'ignition qui pourrait causer une surpression sur le tank. 
+\section*{\large{Données:}}
+\begin{itemize}
+\item Hauteur totale du tank : 12\meter
+\item Niveau de \chemform{NH_3} liquide dans le tank : 8\meter
+\item Diamètre du tank : 6\meter
+\item T normale de stockage : 20\celsius
+\item Pression de design : 15 barg
+\item Cp/Cv du \chemform{NH_3} : 1.33
+\item Facteur de compressibilité Z : 1.0
+\end{itemize}
+\section*{Questions}
+\begin{enumerate}
+\item\textit{Quelle est la pression normale de stockage?}
+
+En utilisant le graphe de la pression en fonction de la température donné dans l'énoncé et sachant que la temperature de stockage est de 20\celsius , nous pouvons aisément en déduire la pression normale de stockage qui sera approximativement de 7.5 barg, soit 8.51325 bar.
+
+\item\textit{Quelle sera la pression de stockage en été (30\celsius)?}
+
+De la même manière, mais en utilisant cette fois une température de stockage de 30\celsius , nous trouvons une pression de 11 barg, soit 12.01325 bar.
+
+\item\textit{Quelle sera la pression maximale de tarage de la soupape de sécurité?}
+
+La pression de tarage maximale d'une soupape doit toujours être supérieure à la pression opératoire mais également inférieure à la pression de design. Supérieure à la pression opératoire afin d'avoir une marge si jamais une petite surpression venait à se produire sans pour autant être dangereuse. Cela nous évite de perdre toute une \og fournée \fg. Inférieure à la pression de design parce que la soupape ne sait pas immédiatement rétablir l'ordre et que la pression continue donc à monter un petit peu avant d'atteindre son maximum. 
+Dans notre cas, la pression maximale de tarage sera donc de 15 barg, soit 16.01325 bar 
+
+\item\textit{Quelle sera la pression durant la décharge?}
+
+Quand la soupape est ouverte, la pression est de 3\% de la pression initiale. C'est-à-dire qu'elle vaudra approximativement 0.45 barg.
+
+\item\textit{Quelle sera la temperature du liquide durant la décharge via la soupape?}
+
+Ayant trouvé la pression de décharge, on peut directement trouver la température à l'aide du graphique. Elle vaut 243.15\kelvin.
+
+\item\textit{Quelle sera la taille de la soupape nécessaire?}
+
+La formule déterminant la chaleur totale absorbée par le liquide est: $$ Q = C.F.A^{0.82} $$
+Dans notre cas,
+\begin{itemize}
+\item C = 43 200
+\item F = 1
+\item A = 143.2566 \meter\squared
+\end{itemize}
+Nous trouvons donc une chaleur \unit{2.5322}{\megad\watt}.
+Sachant que la pression maximale de tarage est de 15 barg, nous pouvons en déduire la température à l'aide du graphique. Celle-ci est donc de 40\celsius, soit 313.15\kelvin. En utilisant le second graphe, nous trouvons que l'enthalpie de vaporistion vaut \unit{1150}{\kilo\joule\per\kilogram}. Ainsi, nous pouvons obtenir le flux de masse. $$ W = \frac{Q}{\Delta H_{vap}} = \frac{\unit{2.5322}{\megad}.3600}{\unit{1150}{\kilod}} = \unit{7.9269}{\kilod\kilogram\per\hour} $$
+Afin d'obtenir l'aire de l'orifice de la soupape, nous avons utilisé la formule suivante:
+$$ A = \frac{W}{C.K_d.P_1.K_b.K_c}.\sqrt{\frac{T.Z}{M}} $$ avec $$ C = 0.03948.\sqrt{k.(\frac{2}{k+1})^\frac{k+1}{k-1}} $$
+Ce qui nous donne $ C = 0.0265$ et donc $A = \unit{640}{\microd\meter\squared}$.
+
+L'aire de l'orifice de notre soupape est donc de \unit{640}{\microd\meter\squared}.
+
+\item\textit{Si la pression de design de l'équipement était 20 barg, quel serait l'effet d'augmenter la pression de tarage de 5 bar et de la porter à 20 barg?}
+
+La soupape ne sait pas agir directement dans la seconde. Si on met la pression de tarage à 20 barg, la soupape s'ouvre à cette pression mais la pression continuera à augmenter encore un peu avant d'atteindre son maximum et puis de diminuer. Ce qui fait qu'il est possible d'atteindre une pression plus haute que la pression de design de l'équipement et que donc celui-ci pourrait donc être endommagé.
+
+\item\textit{Pour la première pression de tarage, quelle est l'influence d'isoler thermiquement le tank tel que le coefficient d'échange avec l'extérieur soit réduit à une valeur de 10 \watt\per\meter\squared\kelvin ?}
+
+En isolant le tank, on diminue le facteur d'envirronement. En effet, celui-ci vaudrait alors 0.15. Diminuer la facteur d'environnement de 15\% revient à diminuer la chaleur totale reçue de 15\%, ce qui revient à diminuer de 15\% le flux de masse, ce qui revient à diminuer de 15\% l'aire de l'orifice de la soupape. Nous aurons donc besoin d'une soupape dont l'aire de l'orifice vaut 96 \microd\meter\squared.
+\end{enumerate}
+
+
+
+
+
+
+\end{document}
