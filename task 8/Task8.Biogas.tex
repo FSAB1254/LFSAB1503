@@ -14,16 +14,90 @@
 \usepackage{color} % Colors in text
 \usepackage[version=3]{mhchem} % Chemical reactions
 \title{Tâche 8 : Biogaz}
-\author{Sliti Abbas, Paulus Léa, Lambein Xavier}
+\author{Sliti Abbas\and Paulus Léa\and Lambein Xavier}
 \date{06 Decembre 2014}
 
 
 
 \begin{document}
-
 \maketitle
+Le biogaz, une alternative au gaz naturel à prendre en compte. En effet, nos déchets organiques qu'on pense souvent à tord, sans valeur, peuvent après traitement nous procurer du méthane et de la chaleur.
 
-Le biogaz est une alternative au méthane qui est déjà utiliser et qui ne cesse de progresser. C'est un gaz produit par fermentation de matières organiques animales ou végétales en l'absence d'oxygène dans le but de remplacer l'utilisation du méthane pur. Ce procédé se fait naturellement et spontanément ou artificiellement par des usines spécialisées  Le biogaz est consititué de méthane (50\% à 70\%), de \ce{CO2}, de \ce{H2S} et d'impuretés. 
+Dès lors, il nous semble perspicace d'étudier le cas d'un couplage d'usine, c'est à dire une usine de recyclage de déchet organique travaillant avec une usine produisant de l'ammoniac.
+
+\section{Procuration}
+Plusieurs solutions existent pour se procurer du Biogaz:
+\begin{itemize}
+\item La récupération du biogaz de décharge.
+\item Produit par fermentation de matière organique.
+\item Les marais
+\end{itemize}
+
+Concernant la récupération du biogaz de décharge, 10 sites sont répertoriés en Wallonie (le document PDF)
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline 
+Nom CET & Surface (ha) & Volume ($\unit{10^6}{m^3}$ & Puissance installée (MWe) \\ 
+\hline 
+Mont Saint Guibert & 26.5 & 5.3 & 9.5 \\ 
+\hline 
+Hallembaye & 8.3 & 1.6 & 2.5 \\ 
+\hline 
+Court au Bois & 42.9 & 6.5 & 3.2 \\ 
+\hline 
+Froidchapelle & 12.7 & 1.1& 0.25 \\ 
+\hline 
+Belderbuch & 14 & 0.5 & 1.5 \\ 
+\hline 
+Happe-Chapois & 4 & 0.8 & 0.28 \\ 
+\hline 
+Tenneville & 6 & 1 & 0.63 \\ 
+\hline 
+Habay & 15.5 & 2.1 & 0.35 \\ 
+\hline 
+Anton & 5 & 1 & 0.3 \\ 
+\hline 
+Les Isnes & 16 & 1 & 0.06 \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+\section{Etude concrète d'un cas}
+Comme nous l'avons calculé dans la tâche 1, pour produire \unit{1}{T} de \ce{NH3} il nous faut: \unit{624,97}{T} de \ce{CH4} pour la réaction +\unit{83.79}{T} de \ce{CH4} pour chauffer le four. Considérons le pire cas, c'est à dire celui ou nous n'avons pas d'alternative pour chauffer le four. 
+Il nous faudra alors \unit{708.76}{T} de \ce{CH4}/day.
+Lors de la visite à Tenneville, on a eu comme donnée que le digesteur produisait \unit{1000}{m^3/h} de biogaz. En sachant que le \% volumique de méthane dans le biogaz est de \unit{55}{\%} et que sa masse volumique à l'était gazeux est de \unit{0.6709}{kg/m^3}. On trouve la quantité en masse de méthane produite par jour par l'unité de Tenneville.
+\begin{equation}
+1000\cdot \dfrac{55}{100}\cdot 0.6709\cdot 24 = \unit{8855.88}{kg/jour}
+\end{equation}
+Ce qui ne représente que \unit{1.25}{\%} du méthane désiré.
+Étant donné que beaucoup de déchets ménagés sont encore à exploiter nous pourrions imaginer une usine jusqu'à 10 fois mais malheureusement une usine 100 fois plus grande nous semble peu faisable, le biogaz pourrait donc compléter le gaz naturel mais ne peut pas le remplacer.
+
+Nous pensons que malgré que biogaz ne peut être qu'un complément, il reste intéressant pour l'unité de production afin de diminuer sont empreinte écologique.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+Le biogaz est une alternative au méthane qui est déjà utilisée et qui ne cesse de progresser. C'est un gaz produit par fermentation de matières organiques animales ou végétales en l'absence d'oxygène dans le but de remplacer l'utilisation du méthane pur. Ce procédé se fait naturellement et spontanément ou artificiellement par des usines spécialisées. Le biogaz est constitué de méthane (50\% à 70\%), de \ce{CO2}, de \ce{H2S} et d'impuretés. 
 
 L'avantage majeur de ce gaz est qu'il n'augmente pas la quantité de \ce{CO2} dans l'atmosphère. En effet, le rejet de \ce{CO2} provenant de l'utilisation du biogaz équivaut à celui consommé par les végétaux dont ce biogaz est issu. Son impact environnemental est donc considérable.
 

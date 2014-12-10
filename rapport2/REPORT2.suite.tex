@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage[in]{fullpage}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+%\usepackage{chemformula}
+\usepackage{amsmath}
+\usepackage{amssymb}
+%\usepackage{mathtools}
+\usepackage[inline]{enumitem}
+\usepackage[squaren,Gray]{SIunits}
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+%\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{color}
+\usepackage[version=3]{mhchem}
+\usepackage{multirow}
+\usepackage{tabulary}
+\usepackage{varwidth}
+
+\newcommand{\diff}[1]{\mathrm{d}#1}
+
+\let\oldvec\vec
+\renewcommand{\vec}[1]{\oldvec{\bm{#1}}}
+\newcommand{\uvec}[1]{\hat{\bm{#1}}}
+
+\newcommand{\TODO}[1]{\colorbox{red}{\textbf{\textsc{TODO: #1}}}}
+
+\newcommand{\e}[1]{\ensuremath{\cdot 10^{#1}}}
+
+\makeatletter
+\newcommand\reaction@[1]{\begin{equation}\ce{#1}\end{equation}}
+\newcommand\reaction@nonumber[1]%
+{\begin{equation*}\ce{#1}\end{equation*}}
+\newcommand\reaction{\@ifstar{\reaction@nonumber}{\reaction@}}
+\makeatother
+\begin{document}
+Nous avons exprimé la majorité de nos espèces chimiques comme des fonctions de la quantité de méthane (n). Nous allons ajouter une seconde variable, la température (T), qui nous permettra de modéliser entièrement notre système. Dès lors, considérons les équations d'équilibre du reformage primaire qui dépendent de la température (T).\footnotemark
+
+\begin{center}
+
+
+\begin{varwidth}{\textwidth}
+\begin{align}
+ \ce{CH4 +H2O <=> CO +3H2} \\
+\ce{CO +H2O <=> CO2 + H2}
+\end{align}
+\end{varwidth}
+\end{center}
+
+Pour connaitre la quantité de réactifs et de produits à l'équilibre, nous devons d'abord calculer les variations d'enthalpies ($\Delta H_{m}$) et d'entropies ($\Delta S_{m}$) molaires de chaque espèce suivant les définitions suivantes.
+
+$$\Delta H_{m}(T)=\Delta H_{for}(gaz)-\Delta H_{for}(liq)$$
+$$\Delta S_{m} (T)=\Delta S_{for}(gaz)-\Delta S_{for}(liq)$$
+
+Seule l'eau (\ce{H2O}) présente une enthalpie de formation à l'état liquide non-nulle : les autres espèces chimiques se trouvent naturellement à l'état gazeux dans notre environnement. Les enthalpies molaires de formation se calculent de la manière suivante : 
+
+$$\Delta H_{for}(gaz/liq)=\Delta H^0_{vap/fus} + \int\limits_{T_{ref}}^T {\Delta C_p dT}$$
+$$\Delta S_{for}(gaz/liq)=\Delta S^0_{vap/fus} + \int\limits_{T_{ref}}^T {\frac{\Delta  C_p}{T} dT}$$
+
+Ensuite, nous additionnons les variations d'enthalpies et d'entropies molaires pour obtenir les variations d'enthalpies et d'entropies réactionnels : 
+
+$$\Delta H_{r}(T) = \sum nH_m(produits) - \sum nH_m(reactifs)$$
+$$\Delta S_{r}(T) = \sum nS_m(produits) - \sum nS_m(reactifs)$$
+
+Ainsi, nous pouvons en déduire l'enthalpie libre réactionnel :  $$\Delta G_r(T) = \Delta H_{r}(T)-T\Delta S_{r}(T)$$
+
+Nous pouvons maintenant calculer le quotient réactionnel qui vaut : $$ Q_r(\xi_{eq}) = K(T) = exp(-\frac{\Delta G_r(T)}{RT})$$ 
+
+A l'aide d'un tableau d'avancement des réactions, nous allons déterminer la quantité de réactifs et de produits au début et à l'équilibre des réactions (1) et (2).
+
+\begin{center}
+  \begin{tabular}{lcccc}
+    &  \ce{CH4} & \ce{H2O} & \ce{CO} & \ce{3H2}  \\
+    \hline
+    $x_{init}$ & a
+     & b & 0 & 0  \\
+    $x_{equ}$ &
+    $a-\xi_1$ & $b-\xi_1$ & $\xi_1$ & $3\xi_1$ 
+
+  \end{tabular}
+\end{center}
+
+\begin{center}
+  \begin{tabular}{lcccc}
+    &  \ce{CO} & \ce{H2O} & \ce{CO2} & \ce{H2}  \\
+    \hline
+    $x_{init}$ & $\xi_1$
+     & b-$\xi_1$ & 0 & 0  \\
+    $x_{equ}$ &
+    $\xi_1-\xi_2$ & $b-\xi_1-\xi_2$ & $\xi_2$ & $\xi_2$ 
+
+  \end{tabular}
+\end{center}
+
+En établissant la relation entre nos 2 tableaux d'avancement, nous avons calculé les activités (a) de chaque composants chimique (pour rappel, $a=\frac{p_{part}}{p^0}$) qui sont repris dans le tableau suivant :  
+
+\begin{center}
+  \begin{tabular}{lccccc}
+    &  \ce{CO} & \ce{H2O} & \ce{CO2} & \ce{H2} & \ce{CH4} \\
+    \hline
+    a & $\frac{(\xi_1-\xi_2)RT}{Vp^0}$
+     & $\frac{(b-\xi_1-\xi_2)RT}{Vp^0}$ & $\frac{\xi_2RT}{Vp^0}$ & $\frac{(3\xi_1+\xi_2)RT}{Vp^0}$ & $\frac{(a-\xi_1)RT}{Vp^0}$  \\
+
+  \end{tabular}
+\end{center}
+
+réaction (1) : $$K_1=\frac{a_\ce{CO}(a_\ce{H2})^3}{a_\ce{CH4}a_\ce{H2O}}=\frac{(\xi_1-\xi_2)(3\xi_1+\xi_2)^3R^2T^2}{(a-\xi_1)^2(b-\xi_1-\xi_2)V^2p0^2}$$
+
+réaction (2) : $$K_2=\frac{a_\ce{H2}(a_\ce{CO2})^3}{a_\ce{CO}a_\ce{H2O}}=\frac{(3\xi_1+\xi_2)}{(\xi_1-\xi_2)(b-\xi_1-\xi_2)}$$
+
+
+Nous arrivons finalement à un système de 4 équations à 4 inconnues : 
+
+\[
+\left\{
+\begin{array}{r c l}
+K_1 &=& \frac{(\xi_1-\xi_2)(3\xi_1+\xi_2)^3R^2T^2}{(a-\xi_1)^2(b-\xi_1-\xi_2)V^2p0^2}\\
+K_2 &=& \frac{(3\xi_1+\xi_2)}{(\xi_1-\xi_2)(b-\xi_1-\xi_2)}\\
+0.6948n &=& 3\xi_1+\xi_2\\
+0.2684n &=& b-\xi_1-\xi_2\\
+\end{array}
+\right.
+\]
+
+En se référant aux 2 tableaux d'avancements, nous pouvons déterminer la quantité de tous nos composés chimiques en fonction n.
+
+
+La chaleur dégagée par la combustion du méthane avec un rendement de 75 et en tenant compte que la quantité d'eau initiale doit être vaporisée est la fonction suivante : 
+
+$$E(n)= n(601.7025-44.01)[kJ]$$
+
+
+
+
+ 
+\end{document}
