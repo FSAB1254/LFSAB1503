@@ -1,4 +1,4 @@
-function V = linear_solutions()
+function M = linear_system()
 
 %   CH4, H2O, O2,  N2,  Ar,  CO,  CO2, H2,  NH3
 M = [ 
@@ -15,8 +15,5 @@ M = [
     0   -1    0    0    0   -1    1    1    0 ; % R4
     0    0    0   -1    0    0    0   -3    2   % R5
     ]'; % Transposed
-
-% We obtain the vectorial space of the solutions to the homogenous system
-V = null(M, 'r');
 
 end

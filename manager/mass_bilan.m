@@ -1,7 +1,8 @@
 function sol = mass_bilan( n_NH3, T_reformer )
 
 % First we resolve the linear dependencies between the variables
-V = linear_solutions();
+M = linear_system();
+V = null(M, 'r');
 
 % Then we compute the equilibrium constants
 [K1, K2] = computeKs(T_reformer);

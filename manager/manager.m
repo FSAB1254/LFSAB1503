@@ -10,70 +10,115 @@ function manager( m_NH3, T_reformer )
 %       m_NH3      = the mass of NH3 in metric tons
 %       T_reformer = the temperature of the primary reformer
 
-M_NH3 = 0.017; % Molar mass of NH3 [kg/mol]
+molarmass = molar_masses();
+M_NH3 = molarmass(9); % Molar mass of NH3 [kg/mol]
 n_NH3 = m_NH3*1e3/M_NH3; % Number of moles of NH3 [mol]
 
 % First, we compute the mass bilan
 % Warning, this is not a vector of masses, but a vector of number of moles
 mb = mass_bilan(n_NH3, T_reformer);
 
+% We compute the energy bilan based on the mass bilan, that is, the
+% number of moles of CH4 needed to heat of the reactants in the reactor, as
+% well as the CO2 produced in the reaction.
+ch4_oven = energy_bilan(mb, T_reformer);
+
+% Finally, we compute the tube count needed for the CH4 flux :
+tc = tube_count(mb(1), mb(2), T_reformer);
+
+% We display everything
+fprintf('\nMass bilan\n==========\n');
+displaymb(mb);
+
+fprintf('\n\nEnergy bilan\n============\n');
+printtitle('Oven');
+printstream('CH4 (in)', ch4_oven*molarmass(1)/1e3, ch4_oven);
+printstream('O2 (in)', ch4_oven*2*molarmass(3)/1e3, ch4_oven*2);
+printstream('H2O (out)', ch4_oven*2*molarmass(2)/1e3, ch4_oven*2);
+printstream('CO2 (out)', ch4_oven*molarmass(7)/1e3, ch4_oven);
+
+fprintf('\n\nOther\n=====\n');
+fprintf('\nTubes needed: %d\n', tc);
+
+fprintf('\n');
+
+end
+
+function displaymb(mb)
+
+M = linear_system();
+molarmass = molar_masses()./1e3;
+
+printtitle('Primary reformer');
+moles = M*(mb.*[1 1 0 0 0 0 0 0 0 0 0 0]');
+mass = molarmass.*moles;
+printstream('CH4 (in)', mass(1), moles(1));
+printstream('H2O (in)', mass(2), moles(2));
+
+printtitle('Secondary reformer');
+moles = M*(mb.*[1 1 1 0 0 0 0 1 1 0 0 0]');
+mass = molarmass.*moles;
+printstream('CH4 (in)', mass(1), moles(1));
+printstream('H2O (in)', mass(2), moles(2));
+printstream('CO (in)', mass(6), moles(6));
+printstream('CO2 (in)', mass(7), moles(7));
+printstream('H2 (in)', mass(8), moles(8));
+printstream('O2 (in)', mass(3), moles(3));
+printstream('N2 (in)', mass(4), moles(4));
+printstream('Ar (in)', mass(5), moles(5));
+
+printtitle('Water-Gas shift');
+moles = M*(mb.*[1 1 1 0 0 0 0 1 1 1 0 0]');
+mass = molarmass.*moles;
+printstream('CO (in)', mass(6), moles(6));
+printstream('CO2 (in)', mass(7), moles(7));
+printstream('N2 (in)', mass(4), moles(4));
+printstream('H2 (in)', mass(8), moles(8));
+printstream('Ar (in)', mass(5), moles(5));
+printstream('H2O (in)', mass(2), moles(2));
+
+printtitle('Separation');
+moles = M*(mb.*[1 1 1 0 0 0 0 1 1 1 1 0]');
+mass = molarmass.*moles;
+printstream('CO2 (in/out)', mass(7), moles(7));
+printstream('N2 (in)', mass(4), moles(4));
+printstream('H2 (in)', mass(8), moles(8));
+printstream('Ar (in)', mass(5), moles(5));
+printstream('H2O (in/out)', mass(2), moles(2));
+
+printtitle('Ammonia synthesis');
+moles = M*(mb.*[1 1 1 1 1 0 0 1 1 1 1 0]');
+mass = molarmass.*moles;
+printstream('H2 (in)', mass(8), moles(8));
+printstream('N2 (in)', mass(4), moles(4));
+printstream('Ar (in/out)', mass(5), moles(5));
+
+printtitle('Output');
+moles = M*(mb.*[1 1 1 1 1 1 0 1 1 1 1 1]');
+mass = molarmass.*moles;
+printstream('NH3 (out)', mass(9), moles(9));
+
 if any(mb < 0)
     % If one of the flux is negative, we display an error message.
-    fprintf('\nError: one of the flux is negative.\n')
-    fprintf('Here are the details of the molar fluxes :\n\n')
-    fprintf(errorstring(mb(1) > 0, 'In(CH4) = %6.2f'), mb(1))
-    fprintf(errorstring(mb(2) > 0, 'In(H2O) = %6.2f'), mb(2))
-    fprintf(errorstring(mb(3) > 0, 'In(Air) = %6.2f'), mb(3))
-    fprintf(errorstring(mb(4) > 0, 'Out(CO2) = %6.2f'), mb(4))
-    fprintf(errorstring(mb(5) > 0, 'Out(H2O) = %6.2f'), mb(5))
-    fprintf(errorstring(mb(6) > 0, 'Out(Ar) = %6.2f'), mb(6))
-    fprintf(errorstring(mb(7) > 0, 'Out(NH3) = %6.2f'), mb(7))
-    fprintf(errorstring(mb(8) > 0, 'R1 = %6.2f'), mb(8))
-    fprintf(errorstring(mb(9) > 0, 'R2 = %6.2f'), mb(9))
-    fprintf(errorstring(mb(10) > 0, 'R3 = %6.2f'), mb(10))
-    fprintf(errorstring(mb(11) > 0, 'R4 = %6.2f'), mb(11))
-    fprintf(errorstring(mb(12) > 0, 'R5 = %6.2f'), mb(12))
+    fprintf('\n**** Error: one of the streams is negative. ****\n')
+end
+
+end
+
+function printstream(name, mass, moles)
+
+fprintf('%-18s%8.2f t/day\t  %8.2f mol/s', name, mass, moles/(24*60*60));
+if mass < 0
+    fprintf(' ****\n');
 else
-    % Otherwise, we compute the energy bilan based on the mass bilan, that is, the
-    % number of moles of CH4 needed to heat of the reactants in the reactor, as
-    % well as the CO2 produced in the reaction.
-    ch4_oven = energy_bilan(mb, T_reformer);
-    co2_oven = ch4_oven;
-
-    % The total bilan is the sum of the two, multiplied by the molar mass and
-    % divided by 10e3 to obtain tons :
-    in_ch4_reactor = mb(1) * 0.01604;
-    in_ch4_oven = ch4_oven * 0.01604;
-    in_ch4 = in_ch4_reactor + in_ch4_oven;
-    in_h2o = mb(2) * 0.01802;
-    in_air = mb(3) * 0.02897;
-    out_co2_reactor = mb(4) * 0.04401;
-    out_co2_oven = co2_oven * 0.04401;
-    out_co2 = out_co2_reactor + out_co2_oven;
-
-    % Finally, we compute the tube count needed for the CH4 flux :
-    tc = tube_count(mb(1), mb(2), T_reformer);
-
-    fprintf('\nTo produce %4.f t of ammoniac a day, we need :\n\n', m_NH3)
-    fprintf('CH4 :\t %7.2f t (%6.2f t in the reactor and %6.2f t in the oven)\n',...
-        in_ch4/1e3, in_ch4_reactor/1e3, in_ch4_oven/1e3)
-    fprintf('H2O :\t %6.2f t\n', in_h2o/1e3)
-    fprintf('Air :\t %6.2f t\n\n', in_air/1e3)
-    fprintf('Besides, that process produces %6.2f t of CO2 a day (%6.2f t in the reactor and %6.2f t in the oven).\n\n',...
-        out_co2/1e3, out_co2_reactor/1e3, out_co2_oven/1e3)
-    fprintf('Finally, we need %3.f tubes to inject methane in the primary reformer.\n\n', tc)
+    fprintf('\n');
 end
 
 end
 
-function str = errorstring(cond, msg)
-%ERRORSTRING - Returns string with red coloring if a condition is false.
+function printtitle(title)
 
-if cond
-    str = [msg, '\n'];
-else
-    str = ['**** ', msg, ' ****\n'];
-end
+fprintf('\n%s\n%s\n', title, repmat('-', 1, length(title)));
 
 end
 
