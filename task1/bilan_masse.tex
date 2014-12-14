@@ -130,17 +130,34 @@ Notons qu'il s'agit à la fois de la quantité de méthane consommée et --- pen
 
 \subsection{Bilan total}
 
-Le bilan total se calcule simplement en additionnant les valeurs trouvées dans les deux bilans précédents :
+Le bilan total est simplement la synthèse des valeurs trouvées dans les deux bilans précédents. Pour une production de \unit{1500}{\ton} de méthane par jour et une température du réformeur primaire de \unit{1000}{\kelvin}, nous avons les résultats suivants (calculés via le gestionnaire Matlab) :
 \begin{center}
     \renewcommand{\arraystretch}{1.3}
-    \begin{tabular}{ccc|c}
-        \ce{CH4} & \ce{H2O} & air & \ce{CO2} (rejeté) \\
+    \begin{tabular}{l|lr|lr}
+        & \multicolumn{2}{c|}{\textbf{Entrées} [\ton\per jour]}
+        & \multicolumn{2}{c}{\textbf{Sorties} [\ton\per jour]} \\
+        
         \hline
-        $(n_{i,\ce{CH4}} + n_\text{four}) M_\ce{CH4}$ & $n_{i,\ce{H2O}} M_\ce{H2O}$ & $n_{i,\text{air}} M_\text{air}$ & $(n_{f,\ce{CO2}} + n_\text{four}) M_\ce{CO2}$ \\
+        \multirow{2}{*}{Réformeur primaire}
+        & \ce{CH4} & $624.98$ & & \\
+        & \ce{H2O} & $1383.94$ & & \\
+        
         \hline
-        \color{gray}$\unit{626.00}{\ton} + \unit{75.45}{\ton}$ & \color{gray}\unit{275.2}{\ton} & \color{gray}\unit{1639}{\ton} & \color{gray}$\unit{1717.58}{\ton} + \unit{207.02}{\ton}$ \\
-        $\unit{701.45}{\ton}$ & \unit{275.2}{\ton} & \unit{1639}{\ton} & $ \unit{1924.61}{\ton}$
+        \multirow{2}{*}{Réformeur secondaire}
+        & \ce{O2} & $379.39$ & & \\
+        & \ce{N2} & $1233.67$ & & \\
+        & \ce{Ar} & $22.55$ & & \\
+        
+        \hline
+        \multirow{2}{*}{Séparation}
+        & & & \ce{CO2} & $1714.49$ \\
+        & & & \ce{H2O} & $407.49$ \\
+        
+        \hline
+        \multirow{2}{*}{Synthèse de l'ammoniac}
+        & & & \ce{Ar} & $22.55$ \\
+        & & & \ce{NH3} & $1500.00$ \\
 
     \end{tabular}
 \end{center}
-Ces valeurs sont données pour \unit{1500}{\ton} d'ammoniac et une température de \unit{1000}{\kelvin}.
+Les détails des flux et les valeurs en \mole\per\second peuvent être obtenues à l'aide du gestionnaire Matlab.
