@@ -6,6 +6,8 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 \usepackage[squaren,Gray]{SIunits} % Physical units rendering
 \usepackage{sistyle}
 \usepackage[autolanguage]{numprint}
@@ -34,5 +36,12 @@
 \institute[UCL]{Ecole polytechnique de Louvain-la-neuve}
 \date{}
 \maketitle
+%==========================================================
+\begin{frame}{Flowsheet}
 
+\begin{center}
+\resizebox{6cm}{6cm}{
+	\input{PartieTask/flowsheet.tex}}
+\end{center}
+\end{frame}
 \end{document}
