@@ -31,6 +31,13 @@ n_dot = n/86400;
 
 V_tot = n_dot*molar_volume; % Total volumetric flux
 
-count = ceil(V_tot/V_1t); % Number of tubes needed
+count = V_tot/V_1t;
+% Better have too many tubes, so if we have something like 80.6 tubes, we
+% take 82.
+if (count - floor(count)) > 0.5
+    count = ceil(count) + 1;
+else
+    count = ceil(count);
+end
 
 end
