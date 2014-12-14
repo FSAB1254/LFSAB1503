@@ -13,7 +13,7 @@
 \begin{document}
 \maketitle
 \section*{Contexte}
-Il nous ait demandé de prévoir une soupape de sécurité a installer sur un tank de \chemform{NH_3} à l'état liquide. En effet, ce tank est situé à proximité d'un réservoir de mazout et celui-ci représente un risque d'ignition qui pourrait causer une surpression sur le tank. 
+Il nous ait demandé de prévoir une soupape de sécurité à installer sur un tank de \chemform{NH_3} à l'état liquide. En effet, ce tank est situé à proximité d'un réservoir de mazout et celui-ci représente un risque d'ignition qui pourrait causer une surpression sur le tank. 
 \section*{\large{Données:}}
 \begin{itemize}
 \item Hauteur totale du tank : 12\meter
@@ -41,11 +41,11 @@ Dans notre cas, la pression maximale de tarage sera donc de 15 barg, soit 16.013
 
 \item\textit{Quelle sera la pression durant la décharge?}
 
-Quand la soupape est ouverte, la pression est de 3\% de la pression initiale. C'est-à-dire qu'elle vaudra approximativement 0.45 barg.
+Dans le cas traité, c'est-à-dire quand l'accident est un incendie, on doit considérer que la décharge se fera à une pression de 121\% de la pression de tarage. Celle-ci étant fixée à 16.01325 bar, la pression lors de la décharge sera donc de 19.376 bar.
 
 \item\textit{Quelle sera la temperature du liquide durant la décharge via la soupape?}
 
-Ayant trouvé la pression de décharge, on peut directement trouver la température à l'aide du graphique. Elle vaut 243.15\kelvin.
+Ayant trouvé la pression de décharge, on peut directement trouver la température à l'aide du graphique. Elle vaut 323.15\kelvin.
 
 \item\textit{Quelle sera la taille de la soupape nécessaire?}
 
@@ -60,9 +60,9 @@ Nous trouvons donc une chaleur \unit{2.5322}{\megad\watt}.
 Sachant que la pression maximale de tarage est de 15 barg, nous pouvons en déduire la température à l'aide du graphique. Celle-ci est donc de 40\celsius, soit 313.15\kelvin. En utilisant le second graphe, nous trouvons que l'enthalpie de vaporistion vaut \unit{1150}{\kilo\joule\per\kilogram}. Ainsi, nous pouvons obtenir le flux de masse. $$ W = \frac{Q}{\Delta H_{vap}} = \frac{\unit{2.5322}{\megad}.3600}{\unit{1150}{\kilod}} = \unit{7.9269}{\kilod\kilogram\per\hour} $$
 Afin d'obtenir l'aire de l'orifice de la soupape, nous avons utilisé la formule suivante:
 $$ A = \frac{W}{C.K_d.P_1.K_b.K_c}.\sqrt{\frac{T.Z}{M}} $$ avec $$ C = 0.03948.\sqrt{k.(\frac{2}{k+1})^\frac{k+1}{k-1}} $$
-Ce qui nous donne $ C = 0.0265$ et donc $A = \unit{640}{\microd\meter\squared}$.
+Ce qui nous donne $ C = 0.0265$ et donc $A = \unit{690}{\microd\meter\squared}$.
 
-L'aire de l'orifice de notre soupape est donc de \unit{640}{\microd\meter\squared}.
+L'aire de l'orifice de notre soupape est donc de \unit{690}{\microd\meter\squared}.
 
 \item\textit{Si la pression de design de l'équipement était 20 barg, quel serait l'effet d'augmenter la pression de tarage de 5 bar et de la porter à 20 barg?}
 
@@ -70,7 +70,7 @@ La soupape ne sait pas agir directement dans la seconde. Si on met la pression d
 
 \item\textit{Pour la première pression de tarage, quelle est l'influence d'isoler thermiquement le tank tel que le coefficient d'échange avec l'extérieur soit réduit à une valeur de 10 \watt\per\meter\squared\kelvin ?}
 
-En isolant le tank, on diminue le facteur d'envirronement. En effet, celui-ci vaudrait alors 0.15. Diminuer la facteur d'environnement de 15\% revient à diminuer la chaleur totale reçue de 15\%, ce qui revient à diminuer de 15\% le flux de masse, ce qui revient à diminuer de 15\% l'aire de l'orifice de la soupape. Nous aurons donc besoin d'une soupape dont l'aire de l'orifice vaut 96 \microd\meter\squared.
+En isolant le tank, on diminue le facteur d'envirronement. En effet, celui-ci vaudrait alors 0.15. Multiplier la facteur d'environnement par 15\% revient à multiplier la chaleur totale reçue de 15\%, ce qui revient à multiplier de 15\% le flux de masse, ce qui revient à multiplier de 15\% l'aire de l'orifice de la soupape. Nous aurions donc besoin d'une soupape dont l'aire de l'orifice vaut 103.5 \microd\meter\squared.
 \end{enumerate}
 
 
