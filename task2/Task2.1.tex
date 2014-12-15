@@ -39,7 +39,7 @@ Si $K$ augmente la réaction favorise les produits, le principe de Le Chatelier 
 \\
 
 Pour la pression, il faut étudier l'influence de la pression totale $p_{tot}$ dans le quotient réactionnel $Q_r$ car $K(T)$ ne dépend que de la température. Ensuite, il suffit de comparer $Q_r$ et  $K(T)$ sans faire varier la température. 
-\[ Q_r= \frac{{(\chi_\ce{NH3} p_{tot})}^2}{(\chi_\ce{N2} p_{tot}) \cdot {(\chi_\ce{H2} p_{tot})}^3}=\frac{{\chi_\ce{NH3}}^2}{\chi_\ce{N2} {\chi_\ce{H2}}^3 \textcolor{red}{{p_{tot}}^2}} \]
+\[ Q_r= \frac{{(\chi_\ce{NH3} p_{tot})}^2}{(\chi_\ce{N2} p_{tot}) \cdot {(\chi_\ce{H2} p_{tot})}^3}=\frac{{\chi_\ce{NH3}}^2}{\chi_\ce{N2} {\chi_\ce{H2}}^3 { (\frac{p_{tot}}{p^0}})^2} \]
 
 Lorsque la pression augmente, $Q_r$ diminue, $Q_r < K$ et donc la réaction favorise les produits.
  
@@ -50,7 +50,7 @@ Le principe de Le Chatelier est vérifié pour la pression.
 \subsection{L’influence de la température et de la pression de
 sortie du réacteur de synthèse d'ammoniac}
 
-Pour déterminer l'influence de ces paramètres à la sortie de notre dernier réacteur, il faut établir un tableau d'avancement de notre réaction et appliquer la loi des gaz parfaits pour faire apparaître nos paramètres.
+Pour déterminer l'influence de ces paramètres à la sortie de notre dernier réacteur, il faut établir un tableau d'avancement de notre réaction.
 
 \begin{center}
   \begin{tabular}{lcccc}
@@ -70,14 +70,18 @@ Pour déterminer l'influence de ces paramètres à la sortie de notre dernier r�
 avec a et b respectivement le nombre de moles initiales de \ce{N2} et \ce{H2}, $\xi$ le degré d'avancement, $\chi_i$ et $a_i$ respectivement la fractions molaire et l'activité correspondante au composé $i$. 
 \\
 
-Nous pouvons récrire la pression totale à l'équilibre par la loi des gaz parfaits : $$ p_{eq} = \frac{n_{eq}RT}{V} = \frac{(a+b-2\xi)RT}{V} $$
+Il faut maintenant résoudre l'égalité suivante pour déterminer la variable $\xi$ et donc la quantité de \ce{NH3} (qui vaut 2$\xi$) à la sortie du réacteur en fonction de T et $p_{tot}$ : $$ Q_r = K(T) $$ 
+
+ $$    \frac{{\chi_\ce{NH3}}^2}{\chi_\ce{N2} {\chi_\ce{H2}}^3 { (\frac{p_{tot}}{p^0}})^2} = \exp {(- \frac{\Delta G_r}{RT})}  $$
+\\
 \\
 
-Il faut maintenant ajuster la pression et la température à volume constant de manière à ce que  $Q_r <$ K (à cette même tempréature) pour que la réaction ait tendance à former du \ce{NH3}.
 
-\[ Q_r= \frac{{(\chi_\ce{NH3} p_{tot})}^2}{(\chi_\ce{N2} p_{tot}) \cdot {(\chi_\ce{H2} p_{tot})}^3} \]
 
-Notre outile de gestion nous indique que pour 1500 tonnes/jour d'ammoniac, a=1529.1 moles/s et b=509.7 moles/s avec $p_{eq}$= 26 bar et T=1000 K.
+Notre outil de gestion (cfr. Tâche 1) nous indique que pour 1500 tonnes/jour d'ammoniac, a=1529.1 moles/s et b=509.7 moles/s avec $p_{eq}$= 26 bar et T=1000 K.
+\\
+
+Notre outil de gestion(Tâche 2) 
 
 
 \end{document}
