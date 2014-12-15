@@ -5,7 +5,8 @@ M = linear_system();
 V = null(M, 'r');
 
 % Then we compute the equilibrium constants
-[K1, K2] = computeKs(T_reformer);
+K1 = computeK([-1, -1, 0, 0, 0, 1, 0, 3, 0], T_reformer);
+K2 = computeK([0, -1, 0, 0, 0, -1, 1, 1, 0], T_reformer);
 p_tot = 26;
 Kp1 = K1 / p_tot^2;
 Kp2 = K2;
