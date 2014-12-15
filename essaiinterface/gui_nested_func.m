@@ -20,7 +20,8 @@ handles(1)=figure('units','pixels',...
     'tag','interface');
 
 % Création du bouton "quantité de NH3 en sortie"
-handles(5)= uicontrol ( 'style' , 'edit' ,'units','normalized', 'position', [0.1,0.3,0.3,0.05] , 'string' , 'Valeur A' );
+handles(5)= uicontrol ( 'style' , 'edit' ,'units','normalized', 'position', [0.5,0.3,0.3,0.05] , 'string' , '0' );
+uicontrol ( 'style' , ' text' , 'units','normalized', 'position', [0.1,0.3,0.4,0.05] , 'string' , 'Quantité de NH3 voulue' );
 % Création de l'objet Uicontrol Pushbutton -
 handles(2)=uicontrol('style','pushbutton',...
     'units','normalized',...
@@ -52,7 +53,7 @@ handles(4)=uicontrol('style','text',...
 	
 	% Diminution de la valeur de nCompteur
 	nCompteur=nCompteur-1;
-     
+     'Je t aime'
 	% Actualisation de la propriété String de l'objet Uicontrol Text résultat
 	set(handles(4),'string',num2str(nCompteur));
 	
