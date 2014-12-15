@@ -1,0 +1,52 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage[squaren,Gray]{SIunits} % Physical units rendering
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+%\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{color} % Colors in text
+\usepackage[version=3]{mhchem} % Chemical reactions
+\usetheme{CambridgeUS}
+\setbeamercolor{title}{bg=red!65!black,fg=white}
+
+\setbeamertemplate{sidebar right}
+{
+  \vfill%
+  \llap{\insertlogo\hskip0.1cm}%
+  \vskip2pt%
+  \llap{\href{http://tex.stackexchange.com/}{A link to tex.sx}\hskip0.2cm}% NEW
+  \vskip3pt% NEW
+  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+  \vskip2pt%
+}
+
+\begin{document}
+\begin{frame}{Quid du biogaz comme alternative au méthane pur?}
+\part*{Avantages}
+\begin{itemize}
+\item Au total, pas de rejet de \ce{CO2}
+\item Diminution de la quantité de \ce{CH4} présent dans l'atmosphère
+\item Moins de pollution liée à la recherche de méthane pur
+\item Problèmes de transport évités si couplage d'usines
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Faisabilité}
+\begin{itemize}
+\item Pour 1500\tonne \ de \ce{NH3} quotidiennes, il nous faut 1 509 188\cubic\meter \ de biogaz
+\item En région wallonne, on pourrait récolter assez de déchets afin de produire 86.6 millons de \cubic\meter \ de biogaz
+\item Le biogaz ne pourra donc pas totalement remplacer le méthane pur dans un premier temps
+\end{itemize}
+
+\end{frame}
+\end{document}
