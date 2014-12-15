@@ -1,8 +1,9 @@
 function n = energy_bilan( mb, T_reformer )
 
-[D_H, D_S] = reactions_dhds(T_reformer);
+[~, ~, H] = thermo_values(T_reformer);
 
-Q = mb(8)*D_H(1) + mb(9)*D_H(2);
+Q = mb(8)*([-1, -1, 0, 0, 0, 1, 0, 3, 0]*H)...
+  + mb(9)*([0, -1, 0, 0, 0, -1, 1, 1, 0]*H);
 
 D_H_comb_ch4 = -890e3;
 
