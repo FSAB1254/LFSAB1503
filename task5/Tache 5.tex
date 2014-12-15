@@ -48,8 +48,7 @@ Dans le cas traité, c'est-à-dire quand l'accident est un incendie, on doit con
 Ayant trouvé la pression de décharge, on peut directement trouver la température à l'aide du graphique. Elle vaut 323.15\kelvin.
 
 \item\textit{Quelle sera la taille de la soupape nécessaire?}
-
-La formule déterminant la chaleur totale absorbée par le liquide est: $$ Q = C.F.A^{0.82} $$
+La formule déterminant la chaleur totale absorbée par le liquide est: $$ Q = C \cdot F \cdot A^{0.82} $$
 Dans notre cas,
 \begin{itemize}
 \item C = 43 200
@@ -57,9 +56,9 @@ Dans notre cas,
 \item A = 143.2566 \meter\squared
 \end{itemize}
 Nous trouvons donc une chaleur \unit{2.5322}{\megad\watt}.
-Sachant que la pression maximale de tarage est de 15 barg, nous pouvons en déduire la température à l'aide du graphique. Celle-ci est donc de 40\celsius, soit 313.15\kelvin. En utilisant le second graphe, nous trouvons que l'enthalpie de vaporistion vaut \unit{1150}{\kilo\joule\per\kilogram}. Ainsi, nous pouvons obtenir le flux de masse. $$ W = \frac{Q}{\Delta H_{vap}} = \frac{\unit{2.5322}{\megad}.3600}{\unit{1150}{\kilod}} = \unit{7.9269}{\kilod\kilogram\per\hour} $$
+Sachant que la pression maximale de tarage est de 15 barg, nous pouvons en déduire la température à l'aide du graphique. Celle-ci est donc de 40\celsius, soit 313.15\kelvin. En utilisant le second graphe, nous trouvons que l'enthalpie de vaporistion vaut \unit{1150}{\kilo\joule\per\kilogram}. Ainsi, nous pouvons obtenir le flux de masse. $$ W = \frac{Q}{\Delta H_{vap}} = \frac{\unit{2.5322}{\megad} \cdot 3600}{\unit{1150}{\kilod}} = \unit{7.9269}{\kilod\kilogram\per\hour} $$
 Afin d'obtenir l'aire de l'orifice de la soupape, nous avons utilisé la formule suivante:
-$$ A = \frac{W}{C.K_d.P_1.K_b.K_c}.\sqrt{\frac{T.Z}{M}} $$ avec $$ C = 0.03948.\sqrt{k.(\frac{2}{k+1})^\frac{k+1}{k-1}} $$
+$$ A = \frac{W}{C \cdot K_d \cdot P_1 \cdot K_b \cdot K_c}\cdot\sqrt{\frac{T \cdot Z}{M}} $$ avec $$ C = 0.03948\cdot\sqrt{k\cdot\left(\frac{2}{k+1}\right)^\frac{k+1}{k-1}} $$
 Ce qui nous donne $ C = 0.0265$ et donc $A = \unit{680}{\microd\meter\squared}$.
 
 L'aire de l'orifice de notre soupape est donc de \unit{680}{\microd\meter\squared}.
