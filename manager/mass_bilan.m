@@ -36,11 +36,11 @@ c = solve(v(7) == n_NH3, c);
 % constant. The reason we resolve this one first is because the other one
 % is much more complexe, and Matlab would have troubles digesting it.
 w = activities_coefs * V * [a;b;c];
-a = solve(w(4)*w(5) / w(3)/w(2) == Kp2, a);
+a = solve(abs(w(4)*w(5) / w(3)/w(2)) == Kp2, a);
 
 % Third equation: the one corresponding to the first equilibrium constant.
 w = activities_coefs * V * [a;b;c];
-b = solve(w(3)*w(5)^3 / w(1)/w(2)/sum(w)^2 == Kp1, w(3) >= 0, b);
+b = solve(abs(w(3)*w(5)^3 / w(1)/w(2))/sum(w)^2 == Kp1, w(3) >= 0, b);
 
 b = double(b);
 a = eval(a);

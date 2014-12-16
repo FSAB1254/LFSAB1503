@@ -1,11 +1,12 @@
 function [Cp, S, H] = thermo_values(T)
 
-%   CH4, H2O, O2,  N2,  Ar,  CO,  CO2, H2,  NH3
-
 % Reference temperature
 T0 = 298.15;
 
-% Standard enthropy at reference temperature (25 °C) [J/mol/K]
+% Each vector has values for the following molecules in that order:
+% CH4, H2O, O2, N2, Ar, CO, CO2, H2, NH3
+
+% Standard enthropy at reference temperature [J/mol/K]
 % Note: Argon was not given, but is not used anyway
 % SOURCE: "Principes de Chimie", 2nd edition, Atkins & Jones, de boek
 S0 = [186.26 ; 188.83 ; 205 ; 192 ; 0 ; 197.67 ; 213.74 ; 130.68 ; 193];
@@ -15,6 +16,7 @@ S0 = [186.26 ; 188.83 ; 205 ; 192 ; 0 ; 197.67 ; 213.74 ; 130.68 ; 193];
 H0f = [-74.81e3 ; -241.82e3 ; 0 ; 0 ; 0 ; -110.53e3 ; -393.51e3 ; 0 ; -46e3];
 
 % Specific heat of CH4, H2O, CO, CO2 and H2 [J/mol/K] (fct of the temperature)
+% Note: Argon was not given, but is not used anyway
 % SOURCE: http://www.edu.upmc.fr/chimie/lc101-202-301/communs/public/capcalo.htm
 Cp = @(T) [
     14.23 + 75.3e-3*T - 18.00e-6*T.^2 ;
