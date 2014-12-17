@@ -1,0 +1,86 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage[squaren,Gray]{SIunits} % Physical units rendering
+\usepackage{sistyle}
+\usepackage[autolanguage]{numprint}
+%\usepackage{xfrac}
+\usepackage{bm}
+\usepackage{color} % Colors in text
+\usepackage[version=3]{mhchem} % Chemical reactions
+\usetheme{CambridgeUS}
+\setbeamercolor{title}{bg=red!65!black,fg=white}
+
+\setbeamertemplate{sidebar right}
+{
+  \vfill%
+  \llap{\insertlogo\hskip0.1cm}%
+  \vskip2pt%
+  \llap{\href{http://tex.stackexchange.com/}{A link to tex.sx}\hskip0.2cm}% NEW
+  \vskip3pt% NEW
+  \llap{\usebeamertemplate***{navigation symbols}\hskip0.1cm}%
+  \vskip2pt%
+}
+
+\begin{document}
+
+\title{Synthèse de l'ammoniac}
+\author{Groupe 1254}
+\institute[UCL]{Ecole polytechnique de Louvain-la-neuve}
+\date{}
+\maketitle
+%==========================================================
+
+\begin{frame}{Analyse du progrès du groupe}
+
+		\begin{center}
+		Organisation du groupe:
+			\begin{itemize}
+			\item Utilisation de Github.
+			\item Planification par écrit des tâches.
+			\item Réservation de Locaux en BST.
+			\end{itemize}
+		\end{center}
+
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Le biogaz en Wallonie}
+		\begin{center}
+\scalebox{0.8}{
+\begin{tabular}{|c|c|c|}
+\hline 
+ & Gisement ($\unit{10^6}{t}$) & Productivité ($\unit{}{m^3_{\ce{CH4}}/t)}$\\ 
+\hline 
+Effluents agricoles & 18.2 & 31.5  \\ 
+\hline 
+Résidus agro-industriels & 1.15 & 60 \\ 
+\hline 
+Résidus organiques ménagers + déchets verts & 1 & 65\\ 
+\hline 
+Boues de STEP& 0.07 & 230 \\ 
+\hline 
+Total & 20.42 & \\ 
+\hline 
+\end{tabular} 
+}
+\end{center}
+
+
+A partir de ces données, nous pouvons faire un estimation de la production de biométhane en Wallonie:
+
+$$18.2\cdot \num{e6} \cdot 31.5 + 1.15\cdot \num{e6} \cdot 60 + 1\cdot \num{e6} \cdot 65 + 0.07\cdot \num{e6} \cdot 230 = \unit{729.4\cdot \num{e6}}{m^3}$$ en sachant que le masse volumique du \ce{CH4} est de \unit{0.6790}{kg/m^3},
+on obtient que la combinaison de ces 4 ressources, nous engendre une production de $\unit{485.33 \cdot \num{e3}}{t/an}$ de \ce{CH4}.
+
+Comme nous avons besoin de \unit{708.76}{t/day} de \ce{CH4}, il nous faut \unit{258697.5}{T/ans} de \ce{CH4}. Ce qui équivaut à \unit{53.3}{\%} de la production de biométhane en Wallonie.
+
+\end{frame}
+
+
+\end{document}

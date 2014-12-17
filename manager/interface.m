@@ -1,19 +1,19 @@
 function varargout = interface(varargin)
-% INTERFACE MATLAB code for interface.fig
+%INTERFACE M-file for interface.fig
 %      INTERFACE, by itself, creates a new INTERFACE or raises the existing
 %      singleton*.
 %
 %      H = INTERFACE returns the handle to a new INTERFACE or the handle to
 %      the existing singleton*.
 %
-%      INTERFACE('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in INTERFACE.M with the given input arguments.
+%      INTERFACE('Property','Value',...) creates a new INTERFACE using the
+%      given property value pairs. Unrecognized properties are passed via
+%      varargin to interface_OpeningFcn.  This calling syntax produces a
+%      warning when there is an existing singleton*.
 %
-%      INTERFACE('Property','Value',...) creates a new INTERFACE or raises the
-%      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before interface_OpeningFcn gets called.  An
-%      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to interface_OpeningFcn via varargin.
+%      INTERFACE('CALLBACK') and INTERFACE('CALLBACK',hObject,...) call the
+%      local function named CALLBACK in INTERFACE.M with the given input
+%      arguments.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
@@ -22,7 +22,7 @@ function varargout = interface(varargin)
 
 % Edit the above text to modify the response to help interface
 
-% Last Modified by GUIDE v2.5 16-Dec-2014 23:06:20
+% Last Modified by GUIDE v2.5 16-Dec-2014 23:36:04
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -30,10 +30,10 @@ gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
                    'gui_OpeningFcn', @interface_OpeningFcn, ...
                    'gui_OutputFcn',  @interface_OutputFcn, ...
-                   'gui_LayoutFcn',  [] , ...
+                   'gui_LayoutFcn',  [], ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
-    gui_State.gui_Callback = str2func(varargin{1});
+   gui_State.gui_Callback = str2func(varargin{1});
 end
 
 if nargout
@@ -50,7 +50,8 @@ function interface_OpeningFcn(hObject, eventdata, handles, varargin)
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to interface (see VARARGIN)
+% varargin   unrecognized PropertyName/PropertyValue pairs from the
+%            command line (see VARARGIN)
 
 % Choose default command line output for interface
 handles.output = hObject;
@@ -63,7 +64,7 @@ guidata(hObject, handles);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = interface_OutputFcn(hObject, eventdata, handles) 
+function varargout = interface_OutputFcn(hObject, eventdata, handles)
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -74,18 +75,18 @@ varargout{1} = handles.output;
 
 
 
-function edit6_Callback(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function production_Callback(hObject, eventdata, handles)
+% hObject    handle to production (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit6 as text
-%        str2double(get(hObject,'String')) returns contents of edit6 as a double
+% Hints: get(hObject,'String') returns contents of production as text
+%        str2double(get(hObject,'String')) returns contents of production as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit6_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function production_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to production (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -97,18 +98,18 @@ end
 
 
 
-function edit7_Callback(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+function temperature_Callback(hObject, eventdata, handles)
+% hObject    handle to temperature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit7 as text
-%        str2double(get(hObject,'String')) returns contents of edit7 as a double
+% Hints: get(hObject,'String') returns contents of temperature as text
+%        str2double(get(hObject,'String')) returns contents of temperature as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit7_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit7 (see GCBO)
+function temperature_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to temperature (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -119,11 +120,16 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in pushsim.
+function pushsim_Callback(hObject, eventdata, handles)
+% hObject    handle to pushsim (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+Prod = str2num(get(handles.production,'String'))
+Temp = str2num(get(handles.temperature,'String'))
+[EbOv, EbOt, MbPr, MbSr, MbWGs, MbS, MbAs, MbO, mb, ch4_oven, tc] = manager(Prod,Temp)
+M = [MbSr;MbSr;MbSr;MbSr];
+set(handles.bilandemasse, 'Data', M);
 
 
 % --------------------------------------------------------------------
