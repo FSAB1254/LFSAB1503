@@ -22,7 +22,7 @@ function varargout = interface(varargin)
 
 % Edit the above text to modify the response to help interface
 
-% Last Modified by GUIDE v2.5 16-Dec-2014 23:36:04
+% Last Modified by GUIDE v2.5 18-Dec-2014 22:42:50
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -125,8 +125,8 @@ function pushsim_Callback(hObject, eventdata, handles)
 % hObject    handle to pushsim (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-Prod = str2num(get(handles.production,'String'))
-Temp = str2num(get(handles.temperature,'String'))
+Prod = str2num(get(handles.production,'String'));
+Temp = str2num(get(handles.temperature,'String'));
 
 molarmass = molar_masses()'./1e3;
 [pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out, tc] = manager(Prod,Temp);
@@ -140,17 +140,18 @@ as_out = molarmass.*as_out;
 ov_in = molarmass.*ov_in;
 ov_out = molarmass.*ov_out;
 
-MbPr = [pr_in(1:8), zeros(1,4)];
-MbSr = [sr_in(1:8), zeros(1,4)];
-MbWGs = [wgs_in(1:8), zeros(1,4)];
-MbS = [sep_in(1:8), sep_out([9 5 7 2])];
-MbAs = [as_in(1:8), as_out([9 5 7 2])];
+min = 0.001;
+MbPr = [pr_in(1:8), zeros(1,4)]; MbPr(MbPr<min) = 0;
+MbSr = [sr_in(1:8), zeros(1,4)]; MbSr(MbSr<min) = 0;
+MbWGs = [wgs_in(1:8), zeros(1,4)]; MbWGs(MbWGs<min) = 0;
+MbS = [sep_in(1:8), sep_out([9 5 7 2])]; MbS(MbS<min) = 0;
+MbAs = [as_in(1:8), as_out([9 5 7 2])]; MbAs(MbAs<min) = 0;
 
-MbOv = [ov_in([1 3]), ov_out([2 7])];
+MbOv = [ov_in([1 3]), ov_out([2 7])]; MbOv(MbOv<min) = 0;
 
 set(handles.bilan, 'Data', MbOv);
 set(handles.bilandemasse, 'Data', [MbPr;MbSr;MbWGs;MbS;MbAs]);
-%set(handles.tuyaux, 'Data', tc);
+set(handles.tuyaux, 'String', tc);
 
 
 % --------------------------------------------------------------------
