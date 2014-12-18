@@ -1,4 +1,4 @@
-function [EbOv, EbOt, MbPr, MbSr, MbWGs, MbS, MbAs, MbO, mb, ch4_oven, tc] = manager( m_NH3, T_reformer )
+function [pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out, tc] = manager( m_NH3, T_reformer )
 %MANAGER - Calculates the mass bilan and tube count of the plant
 %
 %   This function computes the amounts of CH4, H2O and air needed to
@@ -23,102 +23,106 @@ mb = mass_bilan(n_NH3, T_reformer);
 % well as the CO2 produced in the reaction.
 ch4_oven = energy_bilan(mb, T_reformer);
 
+% We compute the streams for display
+[pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out] = mb_intermediary_streams(mb);
+[ov_in, ov_out] = eb_intermediary_streams(ch4_oven);
+
 % Finally, we compute the tube count needed for the CH4 flux :
 tc = tube_count(mb(1), mb(2), T_reformer);
 
 % We display everything
-fprintf('\nMass bilan\n==========\n');
-[MbPr, MbSr, MbWGs, MbS, MbAs, MbO] = displaymb(mb);
-
-fprintf('\n\nEnergy bilan\n============\n');
-printtitle('Oven');
-EbOv = [ch4_oven*molarmass(1)/1e3, ch4_oven*2*molarmass(3)/1e3, ch4_oven*2*molarmass(2)/1e3, ch4_oven*molarmass(7)/1e3];
-printstream('CH4 (in)',  EbOv(1), ch4_oven);
-printstream('O2 (in)',   EbOv(2), ch4_oven*2);
-printstream('H2O (out)', EbOv(3), ch4_oven*2);
-printstream('CO2 (out)', EbOv(4), ch4_oven);
-
+display_intermediary_streams(pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out);
 fprintf('\n\nOther\n=====\n');
-EbOt = tc;
 fprintf('\nTubes needed: %d\n', tc);
-
 fprintf('\n');
 
 end
 
-function [MbPr, MbSr, MbWGs, MbS, MbAs, MbO] = displaymb(mb)
+function [pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out] = mb_intermediary_streams(mb)
 
 M = linear_system();
+
+pr_in = (M*(mb.*[1 1 0 0 0 0 0 0 0 0 0 0]'))';
+
+sr_in = (M*(mb.*[1 1 1 0 0 0 0 1 1 0 0 0]'))';
+
+wgs_in = (M*(mb.*[1 1 1 0 0 0 0 1 1 1 0 0]'))';
+
+sep_in = (M*(mb.*[1 1 1 0 0 0 0 1 1 1 1 0]'))';
+sep_out = (-M*(mb.*[0 0 0 1 1 0 0 0 0 0 0 0]'))';
+
+as_in = (M*(mb.*[1 1 1 1 1 0 0 1 1 1 1 0]'))';
+as_out = (-M*(mb.*[0 0 0 0 0 1 1 0 0 0 0 0]'))';
+
+end
+
+function [ov_in, ov_out] = eb_intermediary_streams(ch4_oven)
+
+ov_in = [ch4_oven, 0, 2*ch4_oven, 0, 0, 0, 0, 0, 0];
+ov_out = [0, 2*ch4_oven, 0, 0, 0, 0, ch4_oven, 0, 0];
+
+end
+
+function display_intermediary_streams(pr_in, sr_in, wgs_in, sep_in, ~, as_in, as_out, ov_in, ov_out)
+
 molarmass = molar_masses()./1e3;
 
+fprintf('\nMass bilan\n==========\n');
+
 printtitle('Primary reformer');
-moles = M*(mb.*[1 1 0 0 0 0 0 0 0 0 0 0]');
-mass = molarmass.*moles;
-MbPr = mass(1:2);
-printstream('CH4 (in)', mass(1), moles(1));
-printstream('H2O (in)', mass(2), moles(2));
+printstream('CH4 (in)', pr_in, 1, molarmass);
+printstream('H2O (in)', pr_in, 2, molarmass);
 
 printtitle('Secondary reformer');
-moles = M*(mb.*[1 1 1 0 0 0 0 1 1 0 0 0]');
-mass = molarmass.*moles;
-size(mass)
-size([1 1 1 1 1 1 1 1 0])
-MbSr = [mass' .* [1 1 1 1 1 1 1 1 0], 0, 0,0];
-printstream('CH4 (in)', mass(1), moles(1));
-printstream('H2O (in)', mass(2), moles(2));
-printstream('CO (in)', mass(6), moles(6));
-printstream('CO2 (in)', mass(7), moles(7));
-printstream('H2 (in)', mass(8), moles(8));
-printstream('O2 (in)', mass(3), moles(3));
-printstream('N2 (in)', mass(4), moles(4));
-printstream('Ar (in)', mass(5), moles(5));
+printstream('CH4 (in)', sr_in, 1, molarmass);
+printstream('H2O (in)', sr_in, 2, molarmass);
+printstream('CO (in)', sr_in, 6, molarmass);
+printstream('CO2 (in)', sr_in, 7, molarmass);
+printstream('H2 (in)', sr_in, 8, molarmass);
+printstream('O2 (in)', sr_in, 3, molarmass);
+printstream('N2 (in)', sr_in, 4, molarmass);
+printstream('Ar (in)', sr_in, 5, molarmass);
 
 printtitle('Water-Gas shift');
-moles = M*(mb.*[1 1 1 0 0 0 0 1 1 1 0 0]');
-mass = molarmass.*moles;
-MbWGs = mass([6,7,4,8,5,2]);
-printstream('CO (in)', mass(6), moles(6));
-printstream('CO2 (in)', mass(7), moles(7));
-printstream('N2 (in)', mass(4), moles(4));
-printstream('H2 (in)', mass(8), moles(8));
-printstream('Ar (in)', mass(5), moles(5));
-printstream('H2O (in)', mass(2), moles(2));
+printstream('CO (in)', wgs_in, 6, molarmass);
+printstream('CO2 (in)', wgs_in, 7, molarmass);
+printstream('N2 (in)', wgs_in, 4, molarmass);
+printstream('H2 (in)', wgs_in, 8, molarmass);
+printstream('Ar (in)', wgs_in, 5, molarmass);
+printstream('H2O (in)', wgs_in, 2, molarmass);
 
 printtitle('Separation');
-moles = M*(mb.*[1 1 1 0 0 0 0 1 1 1 1 0]');
-mass = molarmass.*moles;
-MbS = mass([7,4,8,5,2]);
-printstream('CO2 (in/out)', mass(7), moles(7));
-printstream('N2 (in)', mass(4), moles(4));
-printstream('H2 (in)', mass(8), moles(8));
-printstream('Ar (in)', mass(5), moles(5));
-printstream('H2O (in/out)', mass(2), moles(2));
+printstream('CO2 (in/out)', sep_in, 7, molarmass);
+printstream('N2 (in)', sep_in, 4, molarmass);
+printstream('H2 (in)', sep_in, 8, molarmass);
+printstream('Ar (in)', sep_in, 5, molarmass);
+printstream('H2O (in/out)', sep_in, 2, molarmass);
 
 printtitle('Ammonia synthesis');
-moles = M*(mb.*[1 1 1 1 1 0 0 1 1 1 1 0]');
-mass = molarmass.*moles;
-MbAs = mass([8,4,5]);
-printstream('H2 (in)', mass(8), moles(8));
-printstream('N2 (in)', mass(4), moles(4));
-printstream('Ar (in/out)', mass(5), moles(5));
+printstream('H2 (in)', as_in, 8, molarmass);
+printstream('N2 (in)', as_in, 4, molarmass);
+printstream('Ar (in/out)', as_in, 5, molarmass);
+printstream('NH3 (out)', as_out, 9, molarmass);
 
-printtitle('Output');
-moles = M*(mb.*[1 1 1 1 1 1 0 1 1 1 1 1]');
-mass = molarmass.*moles;
-MbO = mass(9);
-printstream('NH3 (out)', mass(9), moles(9));
-
-if any(mb < 0)
+if any([pr_in, sr_in, wgs_in, sep_in, as_in, as_out, ov_in, ov_out] < -0.01)
     % If one of the flux is negative, we display an error message.
     fprintf('\n**** Error: one of the streams is negative. ****\n')
 end
 
+fprintf('\n\nEnergy bilan\n============\n');
+
+printtitle('Oven');
+printstream('CH4 (in)',  ov_in, 1, molarmass);
+printstream('O2 (in)',   ov_in, 3, molarmass);
+printstream('H2O (out)', ov_out, 2, molarmass);
+printstream('CO2 (out)', ov_out, 7, molarmass);
+
 end
 
-function printstream(name, mass, moles)
+function printstream(name, moles, idx, molarmass)
 
-fprintf('%-18s%8.2f t/day\t  %8.2f mol/s', name, mass, moles/(24*60*60));
-if mass < 0
+fprintf('%-18s%8.2f t/day\t  %8.2f mol/s', name, molarmass(idx)*moles(idx), moles(idx)/(24*60*60));
+if moles(idx) < 0
     fprintf(' ****\n');
 else
     fprintf('\n');

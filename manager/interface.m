@@ -127,9 +127,30 @@ function pushsim_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 Prod = str2num(get(handles.production,'String'))
 Temp = str2num(get(handles.temperature,'String'))
-[EbOv, EbOt, MbPr, MbSr, MbWGs, MbS, MbAs, MbO, mb, ch4_oven, tc] = manager(Prod,Temp)
-M = [MbSr;MbSr;MbSr;MbSr];
-set(handles.bilandemasse, 'Data', M);
+
+molarmass = molar_masses()'./1e3;
+[pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out, tc] = manager(Prod,Temp);
+pr_in = molarmass.*pr_in;
+sr_in = molarmass.*sr_in;
+wgs_in = molarmass.*wgs_in;
+sep_in = molarmass.*sep_in;
+sep_out = molarmass.*sep_out;
+as_in = molarmass.*as_in;
+as_out = molarmass.*as_out;
+ov_in = molarmass.*ov_in;
+ov_out = molarmass.*ov_out;
+
+MbPr = [pr_in(1:8), zeros(1,4)];
+MbSr = [sr_in(1:8), zeros(1,4)];
+MbWGs = [wgs_in(1:8), zeros(1,4)];
+MbS = [sep_in(1:8), sep_out([9 5 7 2])];
+MbAs = [as_in(1:8), as_out([9 5 7 2])];
+
+MbOv = [ov_in([1 3]), ov_out([2 7])];
+
+set(handles.bilan, 'Data', MbOv);
+set(handles.bilandemasse, 'Data', [MbPr;MbSr;MbWGs;MbS;MbAs]);
+%set(handles.tuyaux, 'Data', tc);
 
 
 % --------------------------------------------------------------------
