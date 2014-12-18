@@ -1,5 +1,5 @@
-function [pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out, tc] = manager( m_NH3, T_reformer )
-%MANAGER - Calculates the mass bilan and tube count of the plant
+function [pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out, tc] = manager( m_nh3, T_reformer )
+%MANAGER - Computes the mass bilan and tube count of the plant
 %
 %   This function computes the amounts of CH4, H2O and air needed to
 %   produce a certain mass of NH3. It also computes the
@@ -11,12 +11,12 @@ function [pr_in, sr_in, wgs_in, sep_in, sep_out, as_in, as_out, ov_in, ov_out, t
 %       T_reformer = the temperature of the primary reformer
 
 molarmass = molar_masses();
-M_NH3 = molarmass(9); % Molar mass of NH3 [kg/mol]
-n_NH3 = m_NH3*1e3/M_NH3; % Number of moles of NH3 [mol]
+M_nh3 = molarmass(9); % Molar mass of NH3 [kg/mol]
+n_nh3 = m_nh3*1e3/M_nh3; % Number of moles of NH3 [mol]
 
 % First, we compute the mass bilan
 % Warning, this is not a vector of masses, but a vector of number of moles
-mb = mass_bilan(n_NH3, T_reformer);
+mb = mass_bilan(n_nh3, T_reformer);
 
 % We compute the energy bilan based on the mass bilan, that is, the
 % number of moles of CH4 needed to heat of the reactants in the reactor, as
