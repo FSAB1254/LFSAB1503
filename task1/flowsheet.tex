@@ -1,6 +1,6 @@
 \newpage
 \section{Flowsheet}\label{appendix:flowsheet}
-
+\resizebox{0.8}{
 \tikzstyle{decision} = [diamond, draw, fill=blue!20,
     text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
 \tikzstyle{block} = [rectangle, draw, fill=blue!20,
@@ -11,8 +11,7 @@
 \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
     minimum height=2em]
 
-\begin{center}
-	%\begin{tikzpicture}[thick,scale=0.6, every node/.style={scale=0.6}]
+	\begin{tikzpicture}[thick,scale=0.6, every node/.style={scale=0.6}]
 	\begin{tikzpicture}[node distance = 3cm, auto]
 	    % Place nodes
 	    \node [block] (RefPrim) {\textbf{Réformage primaire}(Réformage à vapeur de \ce{CH_4}) $$\ce{CH_4 + H_2O <=> CO + 3H_2}$$ $$\ce{CO + H2O <=> H2 + CO2}$$ \textit{Equilibre à T (sortie)} };
@@ -40,4 +39,4 @@
 	    \path [line] (Four) -- node {\ce{CO2+2H2O}} (nothing5);
 	    \path [line] (nothing6) -- node {\ce{CH4(g), H2O(l)}} (Four);
 	\end{tikzpicture}
-\end{center}
+}
