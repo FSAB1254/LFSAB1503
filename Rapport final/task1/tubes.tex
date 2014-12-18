@@ -1,0 +1,35 @@
+\section{Nombre de tuyaux d'alimentation}
+
+Grâce au programme Matlab que nous avons écrit, nous sommes arrivés à déterminer le nombre de moles journalières de \ce{CH4} nécessaires pour pouvoir produire 1500 tonnes d'ammoniac par jour. A partir de cela, nous sommes parvenus à exprimer le débit de masse du \ce{CH4} qui est:
+    $$\dot{m}=\frac{m_{\ce{CH4}}}{\unit{24}{\hour}}$$
+    $$\dot{m}=\frac{\unit{624.98}{\ton}}{\unit{86400}{\second}}=\unit{7.23}{\kilogram\per\second}$$
+
+On cherche dans un premier temps le flux d'écoulement de \ce{CH4}, $\dot{V}_{tot}$. On sait que :
+$\dot{V}_{tot}={\dot{m}}/{\rho}$.
+Il nous faut donc $\dot{m}$ (connu) et $\rho$. On sait aussi que:
+\[ \rho = \frac{1}{v} \]
+Selon la loi des gaz parfaits:
+\begin{align*}
+    pv &= R^{*}T \quad\Leftrightarrow\quad v = \frac{R\cdot T}{M\cdot p} \\
+    v &= \frac{\unit{8.314}{\joule\per\kelvin\mole}\cdot\unit{1000}{\kelvin}}{\unit{16\cdot10^{-3}}{\kilogram\per\mole}\cdot\unit{31}{bar}}=\unit{0.168}{\cubic\meter\per\kilogram}
+\end{align*}
+Et donc:
+\[
+    \rho = \frac{1}{v} = \unit{5.95}{\kilogram\per\cubic\meter}
+    \qquad\text{et}\qquad
+    \dot{V}_{tot} = \frac{\dot{m}}{\rho}=\unit{1.215}{\cubic\meter\per\second}
+\]
+
+Pour trouver le nombre de tuyaux nécessaires, il nous faut diviser $\dot{V}_{tot}$ par le débit d'un seul tuyau $\dot{V}_{1t} = A\cdot c = \pi r^2 c$. Connaissant le rayon d'un tuyau ($r=\unit{0.05}{\meter}$) et la vitesse ($c=\unit{2}{\meter\per\second}$), on a :
+\[
+    x = \frac{\dot{V}_{tot}}{\dot{V}_{1t}}
+      = \frac{\unit{1.215}{\cubic\meter\per\second}}{\unit{0.0157}{\cubic\meter\per\second}}
+      = \unit{77.39}{tuyaux}
+\]
+
+Il nous faudrait donc 78 tuyaux pour satisfaire le besoin en \ce{CH4} dans le réacteur du reformage primaire.
+
+Parallèlement, connaissant la masse d'eau demandée par le réformeur primaire grâce à notre programme Matlab (\unit{1383.94}{\ton}) et en utilisant un raisonnement analogue au précédent\footnotemark, on obtient que le nombre de tuyaux nécessaire pour le transport de l'eau est de 151.
+\footnotetext{À un détail près: parce-que la vapeur d'eau n'est pas un gaz parfait, nous sommes obligés d'utiliser l'équation de Van der Waals.}
+
+Au total, nous aurons donc besoin de 229 tuyaux pour approvisionner notre réformeur primaire à la fois en \ce{CH4} et en eau.

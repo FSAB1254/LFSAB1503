@@ -1,0 +1,29 @@
+\section{Système linéaire du bilan de masse}\label{appendix:matrix}
+
+Pour éventuellement aider à comprendre le fonctionnement du bilan de masse, nous fournissons ici le système, sous forme matriciel, qui est à résoudre pour obtenir l'espace vectoriel $V$.
+
+Dans l'ordre, les lignes de la matrice correspondent aux composés suivants : \ce{CH4}, \ce{H2O}, \ce{O2}, \ce{N2}, \ce{Ar}, \ce{CO},  \ce{CO2}, \ce{H2} et \ce{NH3}.
+\[
+    \left(
+    \begin{array}{*{12}c}
+      1 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & -2 & 0 & 0 \\
+      0 & 1 & 0 & -1 & 0 & 0 & 0 & -1 & -1 & 0 & -1 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 3 & 1 & 4 & 1 & -3 \\
+      0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & -1 & 2 & -1 & 0 \\
+      0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 1 & 0 & 1 & 0 \\
+      0 & 0 & .21 & 0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 \\
+      0 & 0 & .78 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & -1 \\
+      0 & 0 & .01 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+      0 & 0 & 0 & 0 & 0 & 0 & -1 & 0 & 0 & 0 & 0 & 2
+    \end{array}
+    \right)
+    \left(
+    \begin{array}{*{1}c}
+      n_{i,\ce{CH4}} \\ n_{i,\ce{H2O}} \\ n_{i,\text{air}} \\ n_{f,\ce{H2O}} \\ n_{f,\ce{CO2}} \\ n_{f,\ce{Ar}} \\ n_{f,\ce{NH3}} \\ R_1 \\ R_2 \\ R_3 \\ R_4 \\ R_5
+    \end{array}
+    \right)
+    = 0
+    \text.
+\]
+
+Résoudre ce système revient à trouver le noyau de la matrice, $\ker{M}$, de part la définition même du noyaux qui est : $\ker{A} = \{x\vert{}A\cdot x =0\}$. De fait, comme cette matrice n'est pas carrée, la dimension du noyau est de minimum $12-9=3$ ; il se trouve que dans ce cas précis, $\mathrm{null}{M} = 3$. Le noyau $\ker{M}$ est donc un espace vectoriel de dimension 3, représentant l'espace des solutions à l'équation matricielle ci-dessus, c'est-à-dire l'ensemble des solutions au bilan de masse satisfaisant les relations linéaires imposées par les 5 réactions de synthèse.

@@ -1,0 +1,41 @@
+
+\section{Flowsheet}\label{appendix:flowsheet}
+
+\tikzstyle{decision} = [diamond, draw, fill=blue!20,
+    text width=4.5em, text badly centered, node distance=3cm, inner sep=0pt]
+\tikzstyle{block} = [rectangle, draw, fill=blue!20,
+    text width=14em, text centered, rounded corners, minimum height=4em, minimum width=15em, node distance=3cm]
+\tikzstyle{block2} = [rectangle, draw, fill=red!20,
+    text width=14em, text centered, rounded corners, minimum height=4em, minimum width=15em, node distance=3cm]
+\tikzstyle{line} = [draw, -latex']
+\tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=3cm,
+    minimum height=2em]
+
+	%\begin{tikzpicture}[thick,scale=0.6, every node/.style={scale=0.6}]
+	\begin{tikzpicture}[node distance = 3cm, auto]
+	    % Place nodes
+	    \node [block] (RefPrim) {\textbf{Réformage primaire}(Réformage à vapeur de \ce{CH_4}) $$\ce{CH_4 + H_2O <=> CO + 3H_2}$$ $$\ce{CO + H2O <=> H2 + CO2}$$ \textit{Equilibre à T (sortie)} };
+	    \node [block2, left of=RefPrim, node distance=7cm] (Four) {\textbf{Four} \\ Combustion de \ce{CH_4} \\ \textit{Irreversible et complète}};
+	    \node [block, below of=RefPrim, node distance=3.5cm] (RefSec) {\textbf{Réformage secondaire} $$\ce{2CH4 + O2 -> 2CO + 4H2}$$ \textit{Considérée comme irréversible et complète à la fin.}};
+	    \node [block, below of=RefSec, node distance=3.5cm] (Reacteur) {\textbf{Réacteurs Water-Gas-Shift} $$\ce{CO + H2O -> CO2 + H2}$$ \textit{Considérée comme complète à la fin.} };
+	    \node [block, below of=Reacteur, node distance=3.5cm] (AbsComp) {\textbf{Absorption de \ce{CO2} et compression} (séparation d'\ce{H2 O}) \\ \textit{Considérées complètes.}};
+	    \node [block, below of=AbsComp, node distance=3.5cm] (Synth) {\textbf{Synthèse d'\ce{NH3} et séparation} $$\ce{N2 + 3H2 <=> 2NH3}$$ \textit{Considérées complètes.}};
+	    \node [right of =AbsComp, node distance=4cm] (nothing1){};
+	    \node [below of =Synth] (nothing2){};
+	    \node [left of =RefSec, node distance=6cm] (nothing3){};
+	    \node [above of =RefPrim, node distance=4cm] (nothing4){};
+	    \node [left of =Four, node distance=5cm] (nothing5){};
+	    \node [above of =Four, node distance=4cm] (nothing6){};
+	    % Draw edges
+	    \path [line] (RefPrim) -- node {\ce{CH4}, \ce{H2O}}(RefSec);
+	    \path [line] (Four) -- node {ENERGY} (RefPrim);
+	    \path [line] (RefSec) -- (Reacteur);
+	    \path [line] (Reacteur) -- node {\ce{CO2(g) + H2(g)}} (AbsComp);
+	    \path [line] (AbsComp) -- (Synth);
+	    \path [line] (AbsComp) -- node {\ce{CO2(l)}}(nothing1);
+	    \path [line] (Synth) -- node {\ce{NH3(l)}}(nothing2);
+	    \path [line] (nothing3) -- node {\ce{O2(g)}, \ce{N2(g)}}(RefSec);
+	    \path [line] (nothing4) -- node {\ce{CH4(g)}, \ce{H2 O(l)}}(RefPrim);
+	    \path [line] (Four) -- node {\ce{CO2+2H2O}} (nothing5);
+	    \path [line] (nothing6) -- node {\ce{CH4(g), H2O(l)}} (Four);
+	\end{tikzpicture}
