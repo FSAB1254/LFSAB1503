@@ -1,0 +1,20 @@
+\section{Calcul des constantes d'équilibre}\label{appendix:const_eq}
+
+Nous avons calculé les constantes d'équilibre des réactions 1 et 2 avec Matlab, à l'aide de l'expression suivante :
+\[
+    K = \mathrm{exp}\!\left( -\frac{\Delta G^0_m(T)}{RT} \right)
+      = \mathrm{exp}\!\left( \frac{\Delta S^0_m(T)}{R} - \frac{\Delta H^0_m(T)}{RT} \right)
+    \text.
+\]
+Dans cette expression, le symbole $\Delta$ correspond à la différence entre les produits et les réactifs. Par exemple, $\Delta S^0_m(T)$ est la somme de l'entropie molaire des produits moins l'entropie molaire des réactifs.
+
+Il est donc nécessaire d'obtenir $\Delta S^0_m(T)$ et $\Delta H^0_m(T)$. Ceux-ci sont calculés à l'aide des formules :
+\[
+    \Delta S^0_m(T) = \Delta S^0_m(T_0) + \int_{T_0}^T\! \Delta C_{p,m} \frac{\diff{T}}{T}
+    \qquad\text{et}\qquad
+    \Delta H^0_m(T) = \Delta H^0_m(T_0) + \int_{T_0}^T\! \Delta C_{p,m} \diff{T}
+    \text.
+\]
+Enfin, la différence de capacités calorifiques molaires $\Delta C_{p,m}$ qui apparait ici est obtenue, sous forme de polynomes de $T$, dans des tables thermodynamiques. Il en va de même pour l'enthalpie et l'entropie à la température de référence $T_0$.
+
+Nous avons donc tous les outils nécessaires pour calculer la valeur de $K$ dans les deux réactions du réformeur primaire. Il suffit simplement d'implémenter les formules dans Matlab pour obtenir les constantes d'équilibres utilisées dans le calcul du bilan de masse.

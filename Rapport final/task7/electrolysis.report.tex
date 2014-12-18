@@ -1,0 +1,54 @@
+\section{Production d'hydrogène par électrolyse}
+
+Au cours du laboratoire, nous avons fait varier plusieurs paramètres afin de déterminer les meilleures conditions de production d'hydrogène. Les trois paramètres sont le pH, la température et le courant (en Ampère). Nous avons étudié la vitesse de production d'hydrogène.
+\\
+
+Remarque : Certaines mesures manquent ou sont imprécises, nous nous sommes donc inspirées de la solution donnée. \footnote{les graphiques sont tirés du document corrigé fournis sur icampus}
+
+\subsection{Conditions opératoires de production d'hydrogène}
+
+\subsubsection{La température}
+
+La température influence la vitesse de réaction : une augmentation de température implique un apport de chaleur qui contribue à diminuer l'énergie à apporter à la réaction (qui est endothermique) et donc l'énergie électrique à apporter sera moindre.
+
+
+
+\subsubsection{Le courant}
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.7]{task7/PRODUCTIONHYDRO.png} 
+\end{center}
+\caption{Effet du courant sur la production d'\ce{H2}}
+\label{courant-H2}
+\end{figure}
+
+Le courant est un paramètre qui influence directement la vitesse de production d'hydrogène. De plus, ces deux grandeurs sont proportionnelles, la production d'hydrogène est donc linéaire avec le temps. En effet, nous nous sommes aperçus que doubler le courant doublait également la vitesse de production (voir figure \ref{courant-H2}). Cependant, nous verrons que celle-ci peut être perturbée par l'acidité du milieu(pH). Par conséquent, plus le courant est élevé plus le flux d'hydrogène sera important.
+
+\subsubsection{L'acidité du milieu}
+
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.7]{task7/poi.png}
+\end{center}
+\caption{Evolution de la tension en fonction du pH}
+\label{tension-ph}
+\end{figure}
+
+La variation du pH peut influencer la vitesse de production de l'hydrogène. Pour obtenir un même courant à des pH différents, il fallait ajuster la tension (V). A certains pH, il était même impossible d'obtenir un courant de \unit{0.5}{A} à cause de la tension limitée que pouvait produire notre générateur (\unit{64}{V} maximum). Il est donc important de bien ajuster l'acidité du milieu en fonction du générateur à disposition. On remarque donc que le pH influence bien la production d'hydrogène car une augmentation de tension implique une augmentation de la puissance (voir figure \ref{tension-ph}). Cependant, l'électrolyse peut se réaliser sans apport de changement de pH. Il est, économiquement, préférable de réaliser cette expérience à pH neutre car le modifier suggère d'importer des réactifs supplémentaires en grande quantité bien qu'il faille imposer une puissance plus intense. 
+
+\subsection{Puissance requise pour un flux d'hydrogène}
+
+Pour produire \unit{1500}{t/j} d'ammoniac, il faut disposer d'un flux d'hydrogène de \unit{1529.1}{mol/s}. Nous supposerons que le rendement est de \unit{100}{\%} et que la réaction se déroule dans les conditions standard. 
+
+La réaction de l’électrolyse de l'eau est la suivante : 
+$$\ce {2H2O(l) -> 2H2(g) + O2(g)}$$ 
+
+Calculons l'enthalpie molaire de réaction :
+
+$$ \Delta H_r^0 =  \unit{285}{kJ.mol^{-1}} $$
+
+La puissance (P) à fournir au système est simplement le produit du flux d'hydrogène exigé et de $ \Delta H_r^0$ :
+
+$$ P = 285\cdot1529.1 = \unit{435 793.5}{kW} $$
