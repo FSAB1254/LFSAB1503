@@ -1,4 +1,4 @@
-\newpage
+\clearpage
 \section{Flowsheet}\label{appendix:flowsheet}
 
 \tikzstyle{decision} = [diamond, draw, fill=blue!20,
@@ -13,6 +13,7 @@
 
 \begin{center}
 	%\begin{tikzpicture}[thick,scale=0.6, every node/.style={scale=0.6}]
+    \scalebox{0.91}{
 	\begin{tikzpicture}[node distance = 3cm, auto]
 	    % Place nodes
 	    \node [block] (RefPrim) {\textbf{Réformage primaire}(Réformage à vapeur de \ce{CH_4}) $$\ce{CH_4 + H_2O <=> CO + 3H_2}$$ $$\ce{CO + H2O <=> H2 + CO2}$$ \textit{Equilibre à T (sortie)} };
@@ -40,4 +41,5 @@
 	    \path [line] (Four) -- node {\ce{CO2+2H2O}} (nothing5);
 	    \path [line] (nothing6) -- node {\ce{CH4(g), H2O(l)}} (Four);
 	\end{tikzpicture}
+}
 \end{center}
