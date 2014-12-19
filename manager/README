@@ -1,0 +1,5 @@
+Here you can find the manager programs we designed for tasks 1 and 2.
+
+The task 1 manager is the program ´manager(m_nh3, T_reformer)´ in the file ´manager.m´. It produces a mass and energy bilan for the process with a given NH3 output, in metric tons, and a given operating temperature for the primary reformer, in kelvin. Detailed information is available with the command ´help manager´. A graphical interface is also available with the command ´interface´.
+
+The task 2 manager is the program ´ammonia(n_n2, n_h2, p, T)´ in the file ´ammonia.m´. It returns the quantity of NH3 produced for a given input of N2 and H2, in moles, and a given pressure and temperature inside the reactor, in bar and kelvin. Detailed information is available with the command ´help ammonia´.
